@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@700&family=Open+Sans:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  color: #313130;
+  list-style: none;
+}
+
+.title {
+  margin: 24px 0;
+  font-weight: 700;
+}
+
+.ad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100px;
+
+  margin: 30px 0;
+
+  /* background-color: rgb(239, 242, 255); */
+  border: 3px solid rgb(123, 174, 216);
+  border-radius: 15px;
+
+  color: rgb(83, 156, 216);
+
+  font: 700 24px "Open Sans";
+  text-shadow: 1px 2px 3px rgb(122, 191, 236);
+}
+
+.loading-pug {
+  width: 100px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 60px;
+
+  border-bottom: 3px solid #d9d6d5;
+}
+
+.logo {
+  margin: 0 82px;
+}
+
+.logo__text {
+  font: 700 24px "Baloo Thambi 2";
+  text-transform: uppercase;
+  color: #000;
+}
+
+.logo__img {
+  height: 32px;
+  margin: 0 -5px;
+}
+
+.main {
+  width: 80%;
+  margin: 40px auto 0;
+  font-family: "Open Sans";
+}
+
+.sections-list {
+  
+}
+
+.section-list__title {
+  margin: 40px 0;
+
+  font-size: 20px;
+}
+
+.section-list {
+  font-size: 16px;
+}
+
+.chapters-list {
+  counter-reset: a;
+}
+
+.chapter-list {
+  counter-increment: a;
+}
+
+.chapter-list__title {
+  font-size: 16px;
+}
+
+.sub-list {
+  columns: 3;
+}
+
+.list-item__link:hover,
+.sub-list__item__link:hover {
+  color: #c4433a;
+  text-decoration: underline;
+}
+
+.sub-list__item {
+  display: flex;
+
+  break-inside: avoid;
+  font-weight: 400;
+  color: #436ebd;
+
+  counter-increment: b;
+}
+
+.sub-list__item::before {
+  
+}
+
+.sub-list__title {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 3px;
+}
+
+.sub-list__item__link {
+  color: #436ebd;
+}
+
+.sub-list__title::before {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  content: counter(a) "." counter(b);
+  margin-right: 20px;
+  font-size: 12px;
+  font-family: monospace;
+  color: #000;
+}
