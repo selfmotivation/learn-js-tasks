@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+
+  position: relative;
+
+  width: 100%;
+  height: 60px;
+
+  border-bottom: 3px solid #d9d6d5;
+  background-color: #fff;
+}
+
+.logo {
+  margin: 0 82px;
+}
+
+.logo__text {
+  font: 700 24px "Baloo Thambi 2";
+  text-transform: uppercase;
+  color: #000;
+}
+
+.logo__img {
+  height: 32px;
+  margin: 0 -5px;
+}

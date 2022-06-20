@@ -1,0 +1,38 @@
+.sidebar {
+  display: block;
+  position: sticky;
+
+  padding: 25px;
+  top: 0;
+
+  width: 250px;
+  height: 100vh;
+
+  background-color: #f7f4f3;
+  border-right: 1px solid #e9e6e4;
+  box-sizing: border-box;
+}
+
+.sidebar__title {
+  padding: 10px 0;
+
+  font-weight: 400;
+  font-size: 14px;
+  color: #908e8d;
+}
+
+.sidebar-list {
+
+}
+
+.sidebar-list__item {
+  padding: 5px 0;
+}
+
+.sidebar-list__link {
+  font-size: 14px;
+}
+
+.sidebar-list__link:hover {
+  color: #c4433a;
+}
