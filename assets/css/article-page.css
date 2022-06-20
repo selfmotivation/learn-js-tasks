@@ -22,6 +22,7 @@ body {
 }
 
 .main {
+  max-width: 800px;
   margin: 40px auto 0;
   padding: 0 200px 50px;
 
