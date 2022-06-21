@@ -84,6 +84,70 @@
     <h3 class="article-list__title title">
       Переменные
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Работа с переменными</div>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">Объявите две переменные: <code>admin</code> и <code>name</code>.</li>
+            <li class="task-list__item">Запишите строку <code>"Джон"</code> в переменную <code>name</code>.</li>
+            <li class="task-list__item">Скопируйте значение из переменной <code>name</code> в <code>admin</code>.</li>
+            <li class="task-list__item">Выведите на экран значение <code>admin</code>, используя функцию <code>alert</code> (должна показать «Джон»).</li>
+          </ol>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+    <code>let name = "Джон";
+    let admin = name;
+    alert(admin);</code>
+        </pre>
+        <button class="task__solution-btn" onclick='foo()'>Нажми меня</button>
+      </div>
+      <div class="task">
+        <div class="task__title">Придумайте правильные имена</div>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">Создайте переменную для названия нашей планеты. Как бы вы её назвали?</li>
+            <li class="task-list__item">Создайте переменную для хранения имени текущего посетителя сайта. Как бы вы назвали такую переменную?
+            </li>
+          </ol>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. let ourPlanetName = 'Earth';
+
+  2. let currentUserName = 'Slim Shady';</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Какие буквы (заглавные или строчные) использовать для имён констант?</div>
+        <p class="task-description">Рассмотрим следующий код:
+          <code class="task__code">
+            <ol class="task__code-list">
+              <li class="task__code-list__item task-list__item">const birthday = '18.04.1982';</li>
+              <li class="task__code-list__item task-list__item"></li>
+              <li class="task__code-list__item task-list__item">const age = someCode(birthday);</li>
+            </ol>
+          </code>
+          <p class="task-description">У нас есть константа <code>birthday</code>, а также <code>age</code>, которая вычисляется при помощи некоторого кода, используя значение из <code>birthday</code> (в данном случае детали не имеют значения, поэтому код не рассматривается).</p>
+          <p class="task-description">Можно ли использовать заглавные буквы для имени <code>birthday</code>? А для <code>age</code>? Или одновременно для обеих переменных?</p>
+          <code class="task__code">
+            <ol class="task__code-list">
+              <li class="task__code-list__item task-list__item">const BIRTHDAY = '18.04.1982'; // использовать заглавные буквы?</li>
+              <li class="task__code-list__item task-list__item"></li>
+              <li class="task__code-list__item task-list__item">const AGE = someCode(BIRTHDAY); // а здесь?</li>
+            </ol>
+          </code>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const BIRTHDAY = '18.04.1982';
+  const age = someCode(BIRTHDAY);</code>
+        </pre>
+      </div>
+    </section>
   </main>
+  <script src="../../tasks/variables-task-1.js"></script>
 </body>
 </html>

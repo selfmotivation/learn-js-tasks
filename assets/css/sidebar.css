@@ -22,7 +22,7 @@
 }
 
 .sidebar-list {
-
+  list-style: none;
 }
 
 .sidebar-list__item {
