@@ -15,13 +15,35 @@ body {
   flex-wrap: wrap;
 }
 
+.sub-list__item.no-tasks .sub-list__item__link::after {
+  position: absolute;
+  right: -30px;
+  
+  content: "\274C";
+}
+
+.sub-list__item.no-tasks:hover::before {
+  content: "Нет задач";
+
+  position: absolute;
+  right: 0;
+  top: 2px;
+  z-index: 1;
+
+  padding: 2px 5px;
+
+  font-size: 10px;
+
+  color: rgb(204, 131, 131);
+  background-color: #fff;
+
+  border: 1px solid rgb(160, 106, 106);
+  border-radius: 10px;
+}
+
 .title {
   margin: 24px 0;
   font-weight: 700;
-}
-
-.link {
-
 }
 
 .link:hover {
@@ -88,6 +110,17 @@ body {
   columns: 3;
 }
 
+.sub-list__item {
+  display: flex;
+  position: relative;
+
+  break-inside: avoid;
+  font-weight: 400;
+  color: #436ebd;
+
+  counter-increment: b;
+}
+
 .sub-list__item__link {
   color: #436ebd;
 }
@@ -98,19 +131,6 @@ body {
   text-decoration: underline;
 }
 
-.sub-list__item {
-  display: flex;
-
-  break-inside: avoid;
-  font-weight: 400;
-  color: #436ebd;
-
-  counter-increment: b;
-}
-
-.sub-list__item::before {
-  
-}
 
 .sub-list__title {
   position: relative;
