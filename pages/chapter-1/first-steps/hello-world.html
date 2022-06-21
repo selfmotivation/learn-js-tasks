@@ -95,16 +95,34 @@
         <p class="task-description">
           Выполните это задание в песочнице, либо на вашем жёстком диске, где – неважно, главное – проверьте, что она работает.
         </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__code">
+  <code>> alert('Я JavaScript!')</code>
+        </pre>
+        <button class="task__solution-btn" onclick="alert('Я JavaScript!')">Нажми меня</button>
       </div>
       <div class="task">
         <div class="task__title">Покажите сообщение с помощью внешнего скрипта</div>
-
         <p class="task-description">
-          Создайте страницу, которая отобразит сообщение «Я JavaScript!».
+          Возьмите решение предыдущей задачи Вызвать alert, и измените его. Извлеките содержимое скрипта во внешний файл <code>alert.js</code>, лежащий в той же папке.
         </p>
         <p class="task-description">
-          Выполните это задание в песочнице, либо на вашем жёстком диске, где – неважно, главное – проверьте, что она работает.
+          Откройте страницу, убедитесь, что оповещение работает.
         </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__code">
+  <code>&lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+    &lt;head&gt;
+      &lt;title&gt;Hello World!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;script src="path-to/your-script.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;
+  </code></pre>
+        <button class="task__solution-btn" onclick="window.open('../../tasks/hello-world.html')">Нажми меня</button>
+        
       </div>
     </section>
   </main>
