@@ -20,6 +20,15 @@ body {
   font-weight: 700;
 }
 
+.link {
+
+}
+
+.link:hover {
+  color: #c4433a;
+  text-decoration: underline;
+}
+
 .ad {
   display: flex;
   justify-content: center;
