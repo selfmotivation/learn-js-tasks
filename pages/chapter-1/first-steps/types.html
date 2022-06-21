@@ -37,7 +37,7 @@
           <a class="sidebar-list__link" href="./variables.html">Переменные</a>
       </li>
       <li class="sidebar-list__item">
-          <a class="sidebar-list__link" href="./types.html">Переменные</a>
+          <a class="sidebar-list__link" href="./types.html">Типы данных</a>
       </li>
       <li class="sidebar-list__item">
           <a class="sidebar-list__link" href="./alert-prompt-confirm.html">Взаимодействие: alert, prompt, confirm</a>
@@ -82,8 +82,33 @@
   </sidebar>
   <main class="main">
     <h3 class="article-list__title title">
-      Переменные
+      Типы данных
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Шаблонные строки</div>
+        <p class="task-description">Что выведет этот скрипт?</p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let name = "Ilya";</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( `hello ${1}` ); // ?</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( `hello ${"name"}` ); // ?</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( `hello ${name}` ); // ?</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+    <code>let name = "Ilya";
+    alert( `hello ${1}` ); // hello 1
+    alert( `hello ${"name"}` ); // hello name
+    alert( `hello ${name}` ); // hello Ilya</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
