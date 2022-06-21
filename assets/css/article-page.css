@@ -96,9 +96,9 @@ body {
 .task__code-list__item {
   counter-increment: d;
   position: relative;
-  padding-left: 70px;
-  padding: 10px 70px;
-  min-height: 32px;
+  padding: 5px 70px;
+  
+  min-height: 25px;
   box-sizing: border-box;
 }
 
@@ -106,10 +106,11 @@ body {
   content: counter(d);
   position: absolute;
   top: 0;
-  left: 0;
-
-  padding: 10px 15px 10px 30px;
-
+  left: 0px;
+  display: block;
+  width: 29px;
+  height: 20px;
+  padding: 5px 0 0 20px;
   color: #716f6e;
   background-color: #e7e5e3;
 }
