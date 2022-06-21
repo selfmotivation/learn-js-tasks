@@ -17,9 +17,11 @@ body {
 
 .sub-list__item.no-tasks .sub-list__item__link::after {
   position: absolute;
-  right: -30px;
+  top: 0px;
+  left: 27px;
   
   content: "\274C";
+  font-size: 10px;
 }
 
 .sub-list__item.no-tasks:hover::before {
@@ -122,6 +124,8 @@ body {
 }
 
 .sub-list__item__link {
+  display: flex;
+
   color: #436ebd;
 }
 
