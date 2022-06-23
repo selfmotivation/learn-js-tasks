@@ -84,6 +84,132 @@
     <h3 class="article-list__title title">
       Условное ветвление: if, '?'
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">if (строка с нулём)</div>
+        <p class="task-description">
+          Выведется ли <code>alert</code>?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">if ("0") {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert( 'Привет' );</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Да, выведется. "0" == true // true</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Название JavaScript</div>
+        <p class="task-description">
+          Используя конструкцию <code>if..else</code>, напишите код, который будет спрашивать: „Какое «официальное» название JavaScript?“
+        </p>
+        <p class="task-description">
+          Если пользователь вводит «ECMAScript», то показать: «Верно!», в противном случае – отобразить: «Не знаете? ECMAScript!»
+        </p>
+        <img src="../../../assets/img/if-else-task-2.png" alt="if-else-task-2">
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let userAnswer = prompt('Какое «официальное» название JavaScript?', '');
+
+  if (userAnswer === 'ECMAScript') {
+    alert('Верно!');
+  } else {
+    alert('Не знаете? ECMAScript!');
+  }</code>
+        </pre>
+        <button class="task__solution-btn" onclick="window.open('../../tasks/ifelse-task-2.html')">Нажми на меня</button>
+      </div>
+      <div class="task">
+        <div class="task__title">Покажите знак числа</div>
+        <p class="task-description">
+          Используя конструкцию <code>if..else</code>, напишите код, который получает число через <code>prompt</code>, а затем выводит в <code>alert</code>:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li><code>1</code>, если значение больше нуля,</li>
+            <li><code>-1</code>, если значение меньше нуля,</li>
+            <li><code>0</code>, если значение равно нулю.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Предполагается, что пользователь вводит только числа.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let userNumber = prompt('Введите число', '');
+
+  if (userNumber > 0) {
+    alert('1');
+  } else if (userNumber < 0) {
+    alert('-1');
+  } else {
+    alert('0');
+  }</code>
+        </pre>
+        <button class="task__solution-btn" onclick="window.open('../../tasks/ifelse-task-3.html')">Нажми на меня</button>
+      </div>
+      <div class="task">
+        <div class="task__title">Перепишите 'if' в '?'</div>
+        <p class="task-description">
+          Перепишите конструкцию <code>if</code> с использованием условного оператора <code>'?'</code>:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let result;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">if (a + b < 4) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;result = 'Мало';</li>
+            <li class="task__code-list__item task-list__item">} else {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;result = 'Много';</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task-description">
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>result (a + b < 4) ? 'Мало' : 'Много';</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Перепишите 'if..else' в '?'</div>
+        <p class="task-description">
+          Перепишите <code>if..else</code> с использованием нескольких операторов <code>'?'</code>:
+        </p>
+        <p class="task-description">
+          Для читаемости рекомендуется разбить код на несколько строк.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let message;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">if (login == 'Сотрудник') {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;message = 'Привет';</li>
+            <li class="task__code-list__item task-list__item">} else if (login == 'Директор') {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;message = 'Здравствуйте';</li>
+            <li class="task__code-list__item task-list__item">} else if (login == '') {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;message = 'Нет логина';</li>
+            <li class="task__code-list__item task-list__item">} else {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;message = '';</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task-description">
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let message = (login === 'Сотрудник') ? 'Привет' :
+    (login === 'Директор') ? 'Здравствуйте' :
+    (login === '') ? 'Нет логина' :
+    '';
+  
+  alert(message);</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>

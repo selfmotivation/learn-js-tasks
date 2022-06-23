@@ -83,6 +83,10 @@ body {
   padding: 5px;
 }
 
+.task-list__simple {
+  margin-left: 20px;
+}
+
 .task__code {
   padding: 0;
 }
