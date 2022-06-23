@@ -84,6 +84,36 @@
     <h3 class="article-list__title title">
       Операторы сравнения
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Операторы сравнения</div>
+        <p class="task-description">
+          Каким будет результат этих выражений?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">5 > 4</li>
+            <li class="task__code-list__item task-list__item">"ананас" > "яблоко"</li>
+            <li class="task__code-list__item task-list__item">"2" > "12"</li>
+            <li class="task__code-list__item task-list__item">undefined == null</li>
+            <li class="task__code-list__item task-list__item">undefined === null</li>
+            <li class="task__code-list__item task-list__item">null == "\n0\n"</li>
+            <li class="task__code-list__item task-list__item">null === +"\n0\n"</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>5 > 4 // true
+  "ананас" > "яблоко" // false
+  "2" > "12" // true
+  undefined == null // true
+  undefined === null // false
+  null == "\n0\n" // false
+  null === +"\n0\n" // false</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
