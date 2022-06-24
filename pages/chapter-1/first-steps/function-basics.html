@@ -84,6 +84,145 @@
     <h3 class="article-list__title title">
       Функции
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Обязателен ли "else"?</div>
+        <p class="task-description">
+          Следующая функция возвращает <code>true</code>, если параметр <code>age</code> больше <code>18</code>.
+        </p>
+        <p class="task-description">
+          В ином случае она запрашивает подтверждение через <code>confirm</code> и возвращает его результат:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function checkAge(age) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;if (age > 18) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;return true;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;} else {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;// ...</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;return confirm('Родители разрешили?');</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Будет ли эта функция работать как-то иначе, если убрать <code>else</code>?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function checkAge(age) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;if (age > 18) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;return true;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;// ...</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;return confirm('Родители разрешили?');</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Есть ли хоть одно отличие в поведении этого варианта?
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Одинаково</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Перепишите функцию, используя оператор '?' или '||'</div>
+        <p class="task-description">
+          Следующая функция возвращает <code>true</code>, если параметр <code>age</code> больше <code>18</code>.
+        </p>
+        <p class="task-description">
+          В ином случае она задаёт вопрос <code>confirm</code> и возвращает его результат.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function checkAge(age) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;if (age > 18) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;return true;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;} else {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;return confirm('Родители разрешили?');</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Перепишите функцию, чтобы она делала то же самое, но без if, в одну строку.
+        </p>
+        <p class="task-description">
+          Сделайте два варианта функции checkAge:
+        </p>
+        <p class="task-description">
+          1. Используя оператор ?
+          <br>
+          2. Используя оператор ||
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. function checkAge(age) {
+    return age > 18 ? true : confirm('Родители разрешили?');
+  }
+
+  2. function checkAge(age) {
+    return age > 18 || confirm('Родители разрешили?');
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Функция min(a, b)</div>
+        <p class="task-description">
+          Напишите функцию <code>min(a,b)</code>, которая возвращает меньшее из чисел <code>a</code> и <code>b</code>.
+        </p>
+        <p class="task-description">
+          Пример вызовов:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">min(2, 5) == 2</li>
+            <li class="task__code-list__item task-list__item">min(3, -1) == -1</li>
+            <li class="task__code-list__item task-list__item">min(1, 1) == 1</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function min(a, b) {
+    return a < b ? a : b;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Функция pow(x,n)</div>
+        <p class="task-description">
+          Напишите функцию <code>pow(x,n)</code>, которая возвращает <code>x</code> в степени <code>n</code>. Иначе говоря, умножает <code>x</code> на себя <code>n</code> раз и возвращает результат.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">pow(3, 2) = 3 * 3 = 9</li>
+            <li class="task__code-list__item task-list__item">pow(3, 3) = 3 * 3 * 3 = 27</li>
+            <li class="task__code-list__item task-list__item">pow(1, 100) = 1 * 1 * ...* 1 = 1</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Создайте страницу, которая запрашивает <code>x</code> и <code>n</code>, а затем выводит результат <code>pow(x,n)</code>.
+        </p>
+        <p class="task-description">
+          P.S. В этой задаче функция обязана поддерживать только натуральные значения <code>n</code>, т.е. целые от <code>1</code> и выше.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function pow(x, n) {
+    let num = x;
+    for (let i = 1; i < n; i++) {
+      num *= x;
+    }
+
+    return num;
+  }</code>
+        </pre>
+        <button class="task__solution-btn" onclick="window.open('../../tasks/function-basics/function-basics-task-4.html')">Нажми на меня</button>
+      </div>
+    </section>
   </main>
 </body>
 </html>
