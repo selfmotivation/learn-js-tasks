@@ -84,6 +84,86 @@
     <h3 class="article-list__title title">
       Конструкция "switch"
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Напишите "if", аналогичный "switch"</div>
+        <p class="task-description">
+          Напишите <code>if..else</code>, соответствующий следующему <code>switch</code>:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">switch (browser) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;case 'Edge':</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert( "You've got the Edge!" );</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;case 'Chrome':</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;case 'Firefox':</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;case 'Safari':</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;case 'Opera':</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;alert( 'Okay we support these browsers too' );</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;break;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;default:</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;alert( 'We hope that this page looks ok!' );</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>if (browser === 'Edge') {
+    alert( "You've got the Edge!" );
+  } else if (browser === 'Chrome' ||
+             browser === 'Firefox' ||
+             browser === 'Safari' ||
+             browser === 'Opera') {
+    alert( 'Okay we support these browsers too' );
+  } else {
+    alert( 'We hope that this page looks ok!' );
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Переписать условия "if" на "switch"</div>
+        <p class="task-description">
+          Перепишите код с использованием одной конструкции <code>switch</code>:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">const number = +prompt('Введите число между 0 и 3', '');</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">if (number === 0) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert('Вы ввели число 0');</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">if (number === 1) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert('Вы ввели число 1');</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">if (number === 2 || number === 3) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert('Вы ввели число 2, а может и 3');</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const number = +prompt('Введите число между 0 и 3', '');
+    switch (number) {
+      case 0:
+        alert('Вы ввели число 0');
+        break;
+      case 1:
+        alert('Вы ввели число 1');
+        break;
+      case 2:
+      case 3:
+        alert('Вы ввели число 2, а может и 3');
+        break;
+    }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
