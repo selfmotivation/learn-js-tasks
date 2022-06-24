@@ -54,6 +54,117 @@
     <h3 class="article-list__title title">
       Конструкторы, создание объектов через "new"
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Две функции - один объект</div>
+        <p class="task-description">
+          Возможно ли создать функции <code>A</code> и <code>B</code> в примере ниже, где объекты равны <code>new A()==new B()</code>?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function A() { ... }</li>
+            <li class="task__code-list__item task-list__item">function B() { ... }</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let a = new A;</li>
+            <li class="task__code-list__item task-list__item">let b = new B;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( a == b ); // true</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Если да – приведите пример вашего кода.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const randomObj = {};
+
+  function A() { return randomObj; }
+  function B() { return randomObj; }
+    
+  alert( new A() === new B() ); // true</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Создание калькулятора при помощи конструктора</div>
+        <p class="task-description">
+          Создайте функцию-конструктор <code>Calculator</code>, который создаёт объекты с тремя методами:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li><code>read()</code> запрашивает два значения при помощи <code>prompt</code> и сохраняет их значение в свойствах объекта.</li>
+            <li><code>sum()</code> возвращает сумму введённых свойств.</li>
+            <li><code>mul()</code> возвращает произведение введённых свойств.</li>
+          </ul>
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let calculator = new Calculator();</li>
+            <li class="task__code-list__item task-list__item">let calculator = new Calculator();
+              calculator.read();</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( "Sum=" + calculator.sum() );</li>
+            <li class="task__code-list__item task-list__item">alert( "Mul=" + calculator.mul() );</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function Calculator() {
+    this.read = function() {
+      this.x = +prompt('1st number?', '');
+      this.y = +prompt('2nd number?', '');
+    },
+    this.sum = function() {
+      return this.x + this.y;
+    },
+    this.mul = function() {
+      return this.x * this.y;
+    };
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Создаём Accumulator</div>
+        <p class="task-description">
+          Напишите функцию-конструктор <code>Accumulator(startingValue)</code>.
+        </p>
+        <p class="task-description">
+          Объект, который она создаёт, должен уметь следующее:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Хранить «текущее значение» в свойстве <code>value</code>. Начальное значение устанавливается в аргументе конструктора <code>startingValue</code>.</li>
+            <li>Метод <code>read()</code> использует <code>prompt</code> для получения числа и прибавляет его к свойству <code>value</code>.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Таким образом, свойство <code>value</code> является текущей суммой всего, что ввёл пользователь при вызовах метода <code>read()</code>, с учётом начального значения <code>startingValue</code>.
+        </p>
+        <p class="task-description">
+          Ниже вы можете посмотреть работу кода:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let accumulator = new Accumulator(1); // начальное значение 1</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">accumulator.read(); // прибавит ввод prompt к текущему значению</li>
+            <li class="task__code-list__item task-list__item">accumulator.read(); // прибавит ввод prompt к текущему значению</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert(accumulator.value); // выведет сумму этих значений</li>
+            <li class="task__code-list__item task-list__item"></li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function Accumulator(startingValue) {
+    this.value = startingValue;
+    this.read = function() {
+      this.value = this.value + +prompt('Введите число', '');
+    }
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
