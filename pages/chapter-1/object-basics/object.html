@@ -54,6 +54,160 @@
     <h3 class="article-list__title title">
       Объекты
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Привет, object</div>
+        <p class="task-description">
+          Напишите код, выполнив задание из каждого пункта отдельной строкой:
+        </p>
+        <ol class="task-list">
+          <li class="task-list__item">Создайте пустой объект <code>user</code>.</li>
+          <li class="task-list__item">Добавьте свойство <code>name</code> со значением <code>John</code>.</li>
+          <li class="task-list__item">Добавьте свойство <code>surname</code> со значением <code>Smith</code>.</li>
+          <li class="task-list__item">Измените значение свойства <code>name</code> на <code>Pete</code>.</li>
+          <li class="task-list__item">Удалите свойство <code>name</code> из объекта.</li>
+        </ol>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const user = {};
+  user.name = 'John';
+  user.surname = 'Smith';
+  user.name = 'Pete';
+  delete user.name;</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Проверка на пустоту</div>
+        <p class="task-description">
+          Напишите функцию <code>isEmpty(obj)</code>, которая возвращает <code>true</code>, если у объекта нет свойств, иначе <code>false</code>.
+        </p>
+        <p class="task-description">
+          Должно работать так:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let schedule = {};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( isEmpty(schedule) ); // true</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">schedule["8:30"] = "get up";</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( isEmpty(schedule) ); // false</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const isEmpty = obj => {
+    for (let prop in obj) {
+      return false;
+    }
+
+    return true;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Объекты-константы?</div>
+        <p class="task-description">
+          Можно ли изменить объект, объявленный с помощью <code>const</code>? Как вы думаете?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">const user = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;name: "John"</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// это будет работать?</li>
+            <li class="task__code-list__item task-list__item">user.name = "Pete";</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Да, свойства объекта, созданного через const, можно менять.</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Сумма свойств объекта</div>
+        <p class="task-description">
+          У нас есть объект, в котором хранятся зарплаты нашей команды:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let salaries = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;John: 100,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;Ann: 160,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;Pete: 130</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Напишите код для суммирования всех зарплат и сохраните результат в переменной <code>sum</code>. Должно получиться <code>390</code>.
+        </p>
+        <p class="task-description">
+          Если объект <code>salaries</code> пуст, то результат должен быть <code>0</code>.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let salaries = {
+    John: 100,
+    Ann: 160,
+    Pete: 130
+  };
+  let sum = 0;
+  
+  for (let prop in salaries) {
+    sum += salaries[prop];
+  }
+  
+  alert(sum);</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Умножаем все числовые свойства на 2</div>
+        <p class="task-description">
+          Создайте функцию <code>multiplyNumeric(obj)</code>, которая умножает все числовые свойства объекта <code>obj</code> на <code>2</code>.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">// до вызова функции</li>
+            <li class="task__code-list__item task-list__item">let menu = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;width: 200,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;height: 300,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;title: "My menu"</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">multiplyNumeric(menu);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// после вызова функции</li>
+            <li class="task__code-list__item task-list__item">menu = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;width: 400,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;height: 600,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;title: "My menu"</li>
+            <li class="task__code-list__item task-list__item">};</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Обратите внимание, что <code>multiplyNumeric</code> не нужно ничего возвращать. Следует напрямую изменять объект.
+        </p>
+        <p class="task-description">
+          P.S. Используйте <code>typeof</code> для проверки, что значение свойства числовое.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const multiplyNumeric = obj => {
+    for (let prop in obj) {
+      if (typeof obj[prop] === 'number') {
+        obj[prop] *= 2;
+      }
+    }
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
