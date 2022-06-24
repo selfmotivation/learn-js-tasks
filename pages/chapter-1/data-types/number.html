@@ -66,6 +66,149 @@
     <h3 class="article-list__title title">
       Числа
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Сумма пользовательских чисел</div>
+        <p class="task-description">
+          Создайте скрипт, который запрашивает ввод двух чисел (используйте prompt) и после показывает их сумму.
+        </p>
+        <p class="task-description">
+          P.S. Есть «подводный камень» при работе с типами.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const a = +prompt('Введите первое число', '');
+  const b = +prompt('Введите второе число', '');
+  alert(a+b);</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Почему 6.35.toFixed(1) == 6.3?</div>
+        <p class="task-description">
+          Методы <code>Math.round</code> и <code>toFixed</code>, согласно документации, округляют до ближайшего целого числа: <code>0..4</code> округляется в меньшую сторону, тогда как <code>5..9</code> в большую сторону.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">alert( 1.35.toFixed(1) ); // 1.4</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Но почему в примере ниже 6.35 округляется до 6.3?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">alert( 6.35.toFixed(1) ); // 6.3</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Как правильно округлить <code>6.35</code>?
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>alert( Math.round(6.35 * 10) / 10 ); // 6.4</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Ввод числового значения</div>
+        <p class="task-description">
+          Создайте функцию <code>readNumber</code>, которая будет запрашивать ввод числового значения до тех пор, пока посетитель его не введёт.
+        </p>
+        <p class="task-description">
+          Функция должна возвращать числовое значение.
+        </p>
+        <p class="task-description">
+          Также надо разрешить пользователю остановить процесс ввода, отправив пустую строку или нажав «Отмена». В этом случае функция должна вернуть <code>null</code>.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function readNumber() {
+    let num;
+
+    while (!isFinite(num)) {
+      num = prompt('Введите число', '');
+    };
+
+    if (num === '') return null;
+
+    return +num;
+  };
+
+  alert(`Возвращается: ${readNumber()}`);</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Бесконечный цикл по ошибке</div>
+        <p class="task-description">
+          Этот цикл – бесконечный. Он никогда не завершится, почему?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let i = 0;</li>
+            <li class="task__code-list__item task-list__item">while (i != 10) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;i += 0.2;</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Это специфика двоичной системы счисления, в которой дроби вроде 0.2 приводят к потере точности</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Случайное число от min до max</div>
+        <p class="task-description">
+          Встроенный метод <code>Math.random()</code> возвращает случайное число от <code>0</code> (включительно) до <code>1</code> (но не включая <code>1</code>)
+        </p>
+        <p class="task-description">
+          Напишите функцию <code>random(min, max)</code>, которая генерирует случайное число с плавающей точкой от <code>min</code> до <code>max</code> (но не включая <code>max</code>).
+        </p>
+        <p class="task-description">
+          Пример работы функции:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">alert( random(1, 5) ); // 1.2345623452</li>
+            <li class="task__code-list__item task-list__item">alert( random(1, 5) ); // 3.7894332423</li>
+            <li class="task__code-list__item task-list__item">alert( random(1, 5) ); // 4.3435234525</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function random(min, max) {
+    return Math.random() * (max - min) + min;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Случайное целое число от min до max</div>
+        <p class="task-description">
+          Напишите функцию <code>randomInteger(min, max)</code>, которая генерирует случайное <i>целое</i> (integer) число от <code>min</code> до <code>max</code> (включительно).
+        </p>
+        <p class="task-description">
+          Любое число из интервала <code>min..max</code> должно появляться с одинаковой вероятностью.
+        </p>
+        <p class="task-description">
+          Пример работы функции:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">alert( randomInteger(1, 5) ); // 1</li>
+            <li class="task__code-list__item task-list__item">alert( randomInteger(1, 5) ); // 3</li>
+            <li class="task__code-list__item task-list__item">alert( randomInteger(1, 5) ); // 5</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max + 1 - min) + min);
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
