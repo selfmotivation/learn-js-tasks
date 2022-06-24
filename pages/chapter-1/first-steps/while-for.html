@@ -84,6 +84,194 @@
     <h3 class="article-list__title title">
       Циклы while и for
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Последнее значение цикла</div>
+        <p class="task-description">
+          Какое последнее значение выведет этот код? Почему?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let i = 3;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">while (i) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert( i-- );</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1
+
+  Сначала происходит вывод i в alert'е, и только после этого уменьшение значения i по декременту
+  </code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Какие значения выведет цикл while?</div>
+        <p class="task-description">
+          Для каждого цикла запишите, какие значения он выведет. Потом сравните с ответом.
+        </p>
+        <p class="task-description">
+          Оба цикла выводят <code>alert</code> с одинаковыми значениями или нет?
+        </p>
+        <p class="task-description">
+          1. Префиксный вариант <code>++i</code>:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let i = 0;</li>
+            <li class="task__code-list__item task-list__item">while (++i < 5) alert( i );</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          2. Постфиксный вариант <code>i++</code>
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let i = 0;</li>
+            <li class="task__code-list__item task-list__item">while (i++ < 5) alert( i );</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let i = 0;
+  while (++i < 5) alert( i ); // 1, 2, 3, 4
+  
+  let i = 0;
+  while (i++ < 5) alert( i ); // 1, 2, 3, 4, 5
+
+  ++i сначала увеличивает значение i, затем его возвращает,
+  i++ сначала возвращает значение i, затем его увеличивает.</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Какие значения выведет цикл for?</div>
+        <p class="task-description">
+          Для каждого цикла запишите, какие значения он выведет. Потом сравните с ответом.
+        </p>
+        <p class="task-description">
+          Оба цикла выведут <code>alert</code> с одинаковыми значениями или нет?
+        </p>
+        <p class="task-description">
+          1. Постфиксная форма:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">for (let i = 0; i < 5; i++) alert( i );</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          2. Префиксная форма:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">for (let i = 0; i < 5; ++i) alert( i );</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>for (let i = 0; i < 5; i++) alert( i ); // 0, 1, 2, 3, 4
+
+  for (let i = 0; i < 5; ++i) alert( i ); // 0, 1, 2, 3, 4
+  
+  Шаг срабатывает "вне" тела цикла.</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Выведите чётные числа</div>
+        <p class="task-description">
+          При помощи цикла <code>for</code> выведите чётные числа от <code>2</code> до <code>10</code>.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>for (let i = 2; i <= 10; i++) {
+    if (i % 2 === 0) alert(i);
+  }</code>
+        </pre>
+        <button class="task__solution-btn" onclick="window.open('../../tasks/while-for/while-for-task-4.html')">Нажми на меня</button>
+      </div>
+      <div class="task">
+        <div class="task__title">Замените for на while</div>
+        <p class="task-description">
+          Перепишите код, заменив цикл <code>for</code> на <code>while</code>, без изменения поведения цикла.
+        </p>
+        <p class="task-description">
+          Для читаемости рекомендуется разбить код на несколько строк.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">for (let i = 0; i < 3; i++) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert( `number ${i}!` );</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let i = 0;
+
+  while (i < 3) {
+    alert( `number ${i}!` );
+    i++;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Повторять цикл, пока ввод неверен</div>
+        <p class="task-description">
+          Напишите цикл, который предлагает <code>prompt</code> ввести число, большее <code>100</code>. Если посетитель ввёл другое число – попросить ввести ещё раз, и так далее.
+        </p>
+        <p class="task-description">
+          Цикл должен спрашивать число пока либо посетитель не введёт число, большее <code>100</code>, либо не нажмёт кнопку Отмена (ESC).
+        </p>
+        <p class="task-description">
+          Предполагается, что посетитель вводит только числа. Предусматривать обработку нечисловых строк в этой задаче необязательно.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let num = prompt('Введите число больше 100:', '');
+
+  while (num && num < 100) {
+    num = prompt('Введите число больше 100:', '');
+  }
+  </code>
+        </pre>
+        <button class="task__solution-btn" onclick="window.open('../../tasks/while-for/while-for-task-5.html')">Нажми на меня</button>
+      </div>
+      <div class="task">
+        <div class="task__title">Вывести простые числа</div>
+        <p class="task-description">
+          Натуральное число, большее <code>1</code>, называется простым, если оно ни на что не делится, кроме себя и <code>1</code>.
+        </p>
+        <p class="task-description">
+          Другими словами, <code>n > 1</code> – простое, если при его делении на любое число кроме <code>1</code> и <code>n</code> есть остаток.
+        </p>
+        <p class="task-description">
+          Например, <code>5</code> это простое число, оно не может быть разделено без остатка на <code>2</code>, <code>3</code> и <code>4</code>.
+        </p>
+        <p class="task-description">
+          <b>Напишите код, который выводит все простые числа из интервала от <code>2</code> до <code>n</code>.</b>
+        </p>
+        <p class="task-description">
+          Для <code>n = 10</code> результат должен быть <code>2,3,5,7</code>.
+        </p>
+        <p class="task-description">
+          P.S. Код также должен легко модифицироваться для любых других интервалов
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const num = 10;
+
+  label: for (let i = 2; i <= num; i++) {    
+    for (let j = 2; j < i; j++) {
+      if (i % j === 0) continue nextPrime;
+    }
+    alert( i );
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
