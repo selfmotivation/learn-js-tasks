@@ -54,6 +54,176 @@
     <h3 class="article-list__title title">
       Методы объекта, "this"
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Проверка синтаксиса</div>
+        <p class="task-description">
+          Каким будет результат выполнения этого кода?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let user = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;name: "Джон",</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;go: function() { alert(this.name) }</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">(user.go)()</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S. Здесь есть подвох :)
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Ошибка. После создания переменной отсутствует ;</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Объясните значение "this"</div>
+        <p class="task-description">
+          В представленном ниже коде мы намерены вызвать <code>obj.go()</code> метод 4 раза подряд.
+        </p>
+        <p class="task-description">
+          Но вызовы <code>(1)</code> и <code>(2)</code> работают иначе, чем <code>(3)</code> и <code>(4)</code>. Почему?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let obj, method;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">obj = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;go: function() { alert(this); },</li>
+            <li class="task__code-list__item task-list__item">};
+            </li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">obj.go();               // (1) [object Object]</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">(obj.go)();             // (2) [object Object]</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">(method = obj.go)();    // (3) undefined</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">(obj.go || obj.stop)(); // (4) undefined</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Любая операция, кроме прямого вызова метода объекта, вызывает потерю контекста из-за отсутствия
+  ссылочного типа, Reference Type</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Использование "this" в литерале объекта</div>
+        <p class="task-description">
+          Здесь функция <code>makeUser</code> возвращает объект.
+        </p>
+        <p class="task-description">
+          Каким будет результат при обращении к свойству объекта <code>ref</code>? Почему?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function makeUser() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;return {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;name: "Джон",</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;ref: this</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;};</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let user = makeUser();</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( user.ref.name ); // Каким будет результат?</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Ошибка. this объявлено в функции в момент ее инициализации и не относится ни к какому объекту,
+  потому заключает в себе window.
+  Либо undefined, если использовать use strict</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Создайте калькулятор</div>
+        <p class="task-description">
+          Создайте объект calculator (калькулятор) с тремя методами:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li><code>read()</code> (читать) запрашивает два значения и сохраняет их как свойства объекта.</li>
+            <li><code>sum()</code> (суммировать) возвращает сумму сохранённых значений.</li>
+            <li><code>mul()</code> (умножить) перемножает сохранённые значения и возвращает результат.</li>
+          </ul>
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let calculator = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;// ... ваш код ...</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">calculator.read();</li>
+            <li class="task__code-list__item task-list__item">alert( calculator.sum() );</li>
+            <li class="task__code-list__item task-list__item">alert( calculator.mul() );</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let calculator = {
+    read() {
+      this.x = +prompt('1st number?', '');
+      this.y = +prompt('2nd number?', '');
+    },
+    sum() {
+      return this.x + this.y;
+    },
+    mul() {
+      return this.x * this.y;
+    }
+  };
+  
+  calculator.read();
+  alert( calculator.sum() );
+  alert( calculator.mul() );</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Цепь вызовов</div>
+        <p class="task-description">
+          Это <code>ladder</code> (лестница) – объект, который позволяет подниматься вверх и спускаться:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let ladder = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;step: 0,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;up() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.step++;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;},</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;down() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.step--;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;},</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;showStep: function() { // показывает текущую ступеньку</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;alert( this.step );</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">};</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let ladder = {
+    step: 0,
+    up() {
+      this.step++;
+      return this;
+    },
+    down() {
+      this.step--;
+      return this;
+    },
+    showStep: function() { // показывает текущую ступеньку
+      alert( this.step );
+      return this;
+    }
+  };</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>

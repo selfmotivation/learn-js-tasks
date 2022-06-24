@@ -84,7 +84,7 @@ body {
 }
 
 .task-list__simple {
-  margin-left: 20px;
+  margin: 20px;
 }
 
 .task__code {
