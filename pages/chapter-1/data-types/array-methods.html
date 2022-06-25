@@ -66,6 +66,427 @@
     <h3 class="article-list__title title">
       Методы массивов
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Переведите текст вида border-left-width в borderLeftWidth</div>
+        <p class="task-description">
+          Напишите функцию <code>camelize(str)</code>, которая преобразует строки вида «my-short-string» в «myShortString».
+        </p>
+        <p class="task-description">
+          То есть дефисы удаляются, а все слова после них получают заглавную букву.
+        </p>
+        <p class="task-description">
+          Примеры:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">camelize("background-color") == 'backgroundColor';</li>
+            <li class="task__code-list__item task-list__item">camelize("list-style-image") == 'listStyleImage';</li>
+            <li class="task__code-list__item task-list__item">camelize("-webkit-transition") == 'WebkitTransition';</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S. Подсказка: используйте <code>split</code>, чтобы разбить строку на массив символов, потом переделайте всё как нужно и методом <code>join</code> соедините обратно.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function camelize(str) {
+    return str.split('-').map((el, i) => i === 0 ? el : el[0].toUpperCase() + el.slice(1)).join('');
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Фильтрация по диапазону</div>
+        <p class="task-description">
+          Напишите функцию <code>filterRange(arr, a, b)</code>, которая принимает массив arr, ищет в нём элементы между <code>a</code> и <code>b</code> и отдаёт массив этих элементов.
+        </p>
+        <p class="task-description">
+          Функция должна возвращать новый массив и не изменять исходный.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let arr = [5, 3, 8, 1];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let filtered = filterRange(arr, 1, 4);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( filtered ); // 3,1 (совпадающие значения)</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( arr ); // 5,3,8,1 (без изменений)</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function filterRange(arr, a, b) {
+    return arr.filter(el => a <= el && el <= b);
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Фильтрация по диапазону "на месте"</div>
+        <p class="task-description">
+          Напишите функцию <code>filterRangeInPlace(arr, a, b)</code>, которая принимает массив <code>arr</code> и удаляет из него все значения кроме тех, которые находятся между <code>a</code> и <code>b</code>. То есть, проверка имеет вид <code>a ≤ arr[i] ≤ b</code>.
+        </p>
+        <p class="task-description">
+          Функция должна изменять принимаемый массив и ничего не возвращать.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let arr = [5, 3, 8, 1];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">filterRangeInPlace(arr, 1, 4); // удалены числа вне диапазона 1..4</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( arr ); // [3, 1]</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function filterRangeInPlace(arr, a, b) {
+    for (let i = 0; i < arr.length; i++) {
+      const el = arr[i];
+  
+      if (el < a || el > b) {
+        arr.splice(i, 1);
+        i--;
+      }
+    }
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Сортировать в порядке по убыванию</div>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let arr = [5, 2, 1, -10, 8];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// ... ваш код для сортировки по убыванию</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( arr ); // 8, 5, 2, 1, -10</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>arr.sort((a, b) => b - a);</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Скопировать и отсортировать массив</div>
+        <p class="task-description">
+          У нас есть массив строк <code>arr</code>. Нужно получить отсортированную копию, но оставить <code>arr</code> неизменённым.
+        </p>
+        <p class="task-description">
+          Создайте функцию <code>copySorted(arr)</code>, которая будет возвращать такую копию.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let arr = ["HTML", "JavaScript", "CSS"];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let sorted = copySorted(arr);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( sorted ); // CSS, HTML, JavaScript</li>
+            <li class="task__code-list__item task-list__item">alert( arr ); // HTML, JavaScript, CSS (без изменений)</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function copySorted(arr) {
+    return arr.slice().sort();
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Создать расширяемый калькулятор</div>
+        <p class="task-description">
+          Создайте функцию конструктор <code>Calculator</code>, которая создаёт «расширяемые» объекты калькулятора.
+        </p>
+        <p class="task-description">
+          Задание состоит из двух частей.
+        </p>
+        <p class="task-description">
+          1.
+        </p>
+        <p class="task-description">
+          Во-первых, реализуйте метод <code>calculate(str)</code>, который принимает строку типа <code>"1 + 2"</code> в формате «ЧИСЛО оператор ЧИСЛО» (разделено пробелами) и возвращает результат. Метод должен понимать плюс <code>+</code> и минус <code>-</code>.
+        </p>
+        <p class="task-description">
+          Пример использования:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let calc = new Calculator;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( calc.calculate("3 + 7") ); // 10</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          2.
+        </p>
+        <p class="task-description">
+          Затем добавьте метод <code>addMethod(name, func)</code>, который добавляет в калькулятор новые операции. Он принимает оператор <code>name</code> и функцию с двумя аргументами <code>func(a,b)</code>, которая описывает его.
+        </p>
+        <p class="task-description">
+          Например, давайте добавим умножение <code>*</code>, деление <code>/</code> и возведение в степень <code>**</code>:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let powerCalc = new Calculator;</li>
+            <li class="task__code-list__item task-list__item">powerCalc.addMethod("*", (a, b) => a * b);</li>
+            <li class="task__code-list__item task-list__item">powerCalc.addMethod("/", (a, b) => a / b);</li>
+            <li class="task__code-list__item task-list__item">powerCalc.addMethod("**", (a, b) => a ** b);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let result = powerCalc.calculate("2 ** 3");</li>
+            <li class="task__code-list__item task-list__item">alert( result ); // 8</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Для этой задачи не нужны скобки или сложные выражения.</li>
+            <li>Числа и оператор разделены ровно одним пробелом.</li>
+            <li>Не лишним будет добавить обработку ошибок.</li>
+          </ul>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function Calculator() {
+
+    this.methods = {
+      "-": (a, b) => a - b,
+      "+": (a, b) => a + b
+    };
+  
+    this.calculate = function(str) {
+  
+      let split = str.split(' '),
+        a = +split[0],
+        op = split[1],
+        b = +split[2]
+  
+      if (!this.methods[op] || isNaN(a) || isNaN(b)) {
+        return NaN;
+      }
+  
+      return this.methods[op](a, b);
+    }
+  
+    this.addMethod = function(name, func) {
+      this.methods[name] = func;
+    };
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Трансформировать в массив имён</div>
+        <p class="task-description">
+          У вас есть массив объектов user, и в каждом из них есть user.name. Напишите код, который преобразует их в массив имён.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let vasya = { name: "Вася", age: 25 };</li>
+            <li class="task__code-list__item task-list__item">let petya = { name: "Петя", age: 30 };</li>
+            <li class="task__code-list__item task-list__item">let masha = { name: "Маша", age: 28 };</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let users = [ vasya, petya, masha ];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let names = /* ... ваш код */</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( names ); // Вася, Петя, Маша</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>users.map(item => item.name);</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Трансформировать в объекты</div>
+        <p class="task-description">
+          У вас есть массив объектов <code>user</code>, и у каждого из объектов есть <code>name</code>, <code>surname</code> и <code>id</code>.
+        </p>
+        <p class="task-description">
+          Напишите код, который создаст ещё один массив объектов с параметрами <code>id</code> и <code>fullName</code>, где <code>fullName</code> – состоит из <code>name</code> и <code>surname</code>.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let vasya = { name: "Вася", surname: "Пупкин", id: 1 };</li>
+            <li class="task__code-list__item task-list__item">let petya = { name: "Петя", surname: "Иванов", id: 2 };</li>
+            <li class="task__code-list__item task-list__item">let masha = { name: "Маша", surname: "Петрова", id: 3 };</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let users = [ vasya, petya, masha ];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let usersMapped = /* ... ваш код ... */</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">/*</li>
+            <li class="task__code-list__item task-list__item">usersMapped = [</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{ fullName: "Вася Пупкин", id: 1 },</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{ fullName: "Петя Иванов", id: 2 },</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{ fullName: "Маша Петрова", id: 3 }</li>
+            <li class="task__code-list__item task-list__item">]</li>
+            <li class="task__code-list__item task-list__item">*/</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( usersMapped[0].id ) // 1</li>
+            <li class="task__code-list__item task-list__item">alert( usersMapped[0].fullName ) // Вася Пупкин</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Итак, на самом деле вам нужно трансформировать один массив объектов в другой. Попробуйте использовать <code>=></code>. Это небольшая уловка.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const newUsers = users.map(user => ({
+    fullName: `${user.name} ${user.surname}`,
+    id: user.id
+  }));</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Отсортировать пользователей по возрасту</div>
+        <p class="task-description">
+          Напишите функцию <code>sortByAge(users)</code>, которая принимает массив объектов со свойством <code>age</code> и сортирует их по нему.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let vasya = { name: "Вася", age: 25 };</li>
+            <li class="task__code-list__item task-list__item">let petya = { name: "Петя", age: 30 };</li>
+            <li class="task__code-list__item task-list__item">let masha = { name: "Маша", age: 28 };</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let arr = [ vasya, petya, masha ];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">sortByAge(arr);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// теперь: [vasya, masha, petya]</li>
+            <li class="task__code-list__item task-list__item">alert(arr[0].name); // Вася</li>
+            <li class="task__code-list__item task-list__item">alert(arr[1].name); // Маша</li>
+            <li class="task__code-list__item task-list__item">alert(arr[2].name); // Петя</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function sortByAge(arr) {
+    arr.sort((a, b) => a.age > b.age ? 1 : -1);
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Перемешайте массив</div>
+        <p class="task-description">
+          Напишите функцию <code>shuffle(array)</code>, которая перемешивает (переупорядочивает случайным образом) элементы массива.
+        </p>
+        <p class="task-description">
+          Многократные прогоны через <code>shuffle</code> могут привести к разным последовательностям элементов. Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let arr = [1, 2, 3];
+            </li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">shuffle(arr);</li>
+            <li class="task__code-list__item task-list__item">// arr = [3, 2, 1]</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">shuffle(arr);</li>
+            <li class="task__code-list__item task-list__item">// arr = [2, 1, 3]</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">shuffle(arr);</li>
+            <li class="task__code-list__item task-list__item">// arr = [3, 1, 2]</li>
+            <li class="task__code-list__item task-list__item">// ...</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Все последовательности элементов должны иметь одинаковую вероятность. Например, <code>[1,2,3]</code> может быть переупорядочено как <code>[1,2,3]</code> или <code>[1,3,2]</code>, или <code>[3,1,2]</code> и т.д., с равной вероятностью каждого случая.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Получить средний возраст</div>
+        <p class="task-description">
+          Напишите функцию <code>getAverageAge(users</code>), которая принимает массив объектов со свойством <code>age</code> и возвращает средний возраст.
+        </p>
+        <p class="task-description">
+          Формула вычисления среднего арифметического значения: <code>(age1 + age2 + ... + ageN) / N</code>.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let vasya = { name: "Вася", age: 25 };;</li>
+            <li class="task__code-list__item task-list__item">let petya = { name: "Петя", age: 30 };</li>
+            <li class="task__code-list__item task-list__item">let masha = { name: "Маша", age: 29 };</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let arr = [ vasya, petya, masha ];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function getAverageAge(users) {
+    return users.reduce((prev, user) => prev + user.age, 0) / users.length;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Оставить уникальные элементы массива</div>
+        <p class="task-description">
+          Пусть arr – массив строк.
+        </p>
+        <p class="task-description">
+          Напишите функцию unique(arr), которая возвращает массив, содержащий только уникальные элементы arr.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function unique(arr) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;/* ваш код */</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let strings = ["кришна", "кришна", "харе", "харе",</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;"харе", "харе", "кришна", "кришна", ":-O"</li>
+            <li class="task__code-list__item task-list__item">];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( unique(strings) ); // кришна, харе, :-O</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function unique(arr) {
+    const resArr = [];
+  
+    for (let str of arr) {
+      if (!resArr.includes(str)) {
+        resArr.push(str);
+      }
+    }
+    return resArr;
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
