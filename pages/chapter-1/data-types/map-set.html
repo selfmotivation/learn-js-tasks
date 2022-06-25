@@ -66,6 +66,128 @@
     <h3 class="article-list__title title">
       Map и Set
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Фильтрация уникальных элементов массива</div>
+        <p class="task-description">
+          Допустим, у нас есть массив <code></code>arr.
+        </p>
+        <p class="task-description">
+          Создайте функцию <code>unique(arr)</code>, которая вернёт массив уникальных, не повторяющихся значений массива <code>arr</code>.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function unique(arr) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;/* ваш код */</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let values = ["Hare", "Krishna", "Hare", "Krishna",</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;"Krishna", "Krishna", "Hare", "Hare", ":-O"</li>
+            <li class="task__code-list__item task-list__item">];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( unique(values) ); // Hare,Krishna,:-O</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S. Здесь мы используем строки, но значения могут быть любого типа.
+        </p>
+        <p class="task-description">
+          P.P.S. Используйте <code>Set</code> для хранения уникальных значений.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function unique(arr) {
+    return Array.from(new Set(arr));
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Отфильтруйте анаграммы</div>
+        <p class="task-description">
+          Анаграммы – это слова, у которых те же буквы в том же количестве, но они располагаются в другом порядке.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">nap - pan</li>
+            <li class="task__code-list__item task-list__item">ear - are - era</li>
+            <li class="task__code-list__item task-list__item">cheaters - hectares - teachers</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Напишите функцию <code>aclean(arr)</code>, которая возвращает массив слов, очищенный от анаграмм.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( aclean(arr) ); // "nap,teachers,ear" или "PAN,cheaters,era"</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Из каждой группы анаграмм должно остаться только одно слово, не важно какое.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function aclean(arr) {
+    const resultWords = {};
+
+    for (let i = 0; i < arr.length; i++) {
+      const sortedEl = arr[i].toLowerCase().split("").sort().join("");
+      obj[sortedEl] = arr[i];
+    }
+  
+    return Object.values(obj);
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Перебираемые ключи</div>
+        <p class="task-description">
+          Мы хотели бы получить массив ключей <code>map.keys()</code> в переменную и далее работать с ними, например, применить метод <code>.push</code>.
+        </p>
+        <p class="task-description">
+          Но это не выходит:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let map = new Map();</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">map.set("name", "John");</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let keys = map.keys();</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// Error: keys.push is not a function</li>
+            <li class="task__code-list__item task-list__item">// Ошибка: keys.push -- это не функция</li>
+            <li class="task__code-list__item task-list__item">keys.push("more");</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Почему? Что нужно поправить в коде, чтобы вызов <code>keys.push</code> сработал?
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>map.keys() возвращает объект, а не массив.
+
+    const map = new Map();
+
+    map.set("name", "John");
+    
+    const keys = Array.from(map.keys());
+    
+    keys.push("more");</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
