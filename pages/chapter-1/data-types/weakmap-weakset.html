@@ -66,6 +66,74 @@
     <h3 class="article-list__title title">
       WeakMap и WeakSet
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Хранение отметок "не прочитано"</div>
+        <p class="task-description">
+          Есть массив сообщений:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let messages = [</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{text: "Hello", from: "John"},</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{text: "How goes?", from: "John"},</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{text: "See you soon", from: "Alice"}</li>
+            <li class="task__code-list__item task-list__item">];</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          У вас есть к ним доступ, но управление этим массивом происходит где-то ещё. Добавляются новые сообщения и удаляются старые, и вы не знаете в какой момент это может произойти.
+        </p>
+        <p class="task-description">
+          Имея такую вводную информацию, решите, какую структуру данных вы могли бы использовать для ответа на вопрос «было ли сообщение прочитано?». Структура должна быть подходящей, чтобы можно было однозначно сказать, было ли прочитано это сообщение для каждого объекта сообщения.
+        </p>
+        <p class="task-description">
+          P.S. Когда сообщение удаляется из массива <code>messages</code>, оно должно также исчезать из структуры данных.
+        </p>
+        <p class="task-description">
+          P.P.S. Нам не следует модифицировать сами объекты сообщений, добавлять туда свойства. Если сообщения принадлежат какому-то другому коду, то это может привести к плохим последствиям.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Подойдет WeakSet
+
+  const readMessages = new WeakSet();
+  </code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Хранение времени прочтения</div>
+        <p class="task-description">
+          Есть массив сообщений такой же, как и в предыдущем задании.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let messages = [</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{text: "Hello", from: "John"},</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{text: "How goes?", from: "John"},</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{text: "See you soon", from: "Alice"}</li>
+            <li class="task__code-list__item task-list__item">];</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Теперь вопрос стоит так: какую структуру данных вы бы предложили использовать для хранения информации о том, когда сообщение было прочитано?
+        </p>
+        <p class="task-description">
+          В предыдущем задании нам нужно было сохранить только факт прочтения «да или нет». Теперь же нам нужно сохранить дату, и она должна исчезнуть из памяти при удалении «сборщиком мусора» сообщения.
+        </p>
+        <p class="task-description">
+          P.S. Даты в JavaScript можно хранить как объекты встроенного класса Date, которые мы разберём позднее.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Подойдет WeakMap
+
+  const readMap = new WeakMap();
+  </code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
