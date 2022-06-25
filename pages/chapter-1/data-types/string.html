@@ -66,6 +66,106 @@
     <h3 class="article-list__title title">
       Строки
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Сделать первый символ заглавным</div>
+        <p class="task-description">
+          Напишите функцию <code>ucFirst(str)</code>, возвращающую строку <code>str</code> с заглавным первым символом. Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">ucFirst("вася") == "Вася";</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function ucFirst(str) {
+    if (str) {
+      return str[0].toUpperCase() + str.slice(1);
+    }
+
+    return str;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Проверка на спам</div>
+        <p class="task-description">
+          Напишите функцию <code>checkSpam(str)</code>, возвращающую <code>true</code>, если <code>str</code> содержит <code>'viagra'</code> или <code>'XXX'</code>, а иначе <code>false</code>.
+        </p>
+        <p class="task-description">
+          Функция должна быть нечувствительна к регистру:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">checkSpam('buy ViAgRA now') == true</li>
+            <li class="task__code-list__item task-list__item">checkSpam('free xxxxx') == true</li>
+            <li class="task__code-list__item task-list__item">checkSpam("innocent rabbit") == false</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function checkSpam(str) {
+    if (str.toLowerCase().includes('viagra') || str.toLowerCase().includes('xxx')) return true;
+    return false;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Усечение строки</div>
+        <p class="task-description">
+          Создайте функцию <code>truncate(str, maxlength)</code>, которая проверяет длину строки <code>str</code> и, если она превосходит <code>maxlength</code>, заменяет конец <code>str</code> на <code>"…"</code>, так, чтобы её длина стала равна <code>maxlength</code>.
+        </p>
+        <p class="task-description">
+          Результатом функции должна быть та же строка, если усечение не требуется, либо, если необходимо, усечённая строка.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">truncate("Вот, что мне хотелось бы сказать на эту тему:", 20) = "Вот, что мне хотело…"</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">truncate("Всем привет!", 20) = "Всем привет!"</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function truncate(str, maxlength) {
+    let newStr = str;
+    if (str.length > maxlength) {
+      return `${newStr.slice(0, maxlength - 1)}...`
+    }
+
+    return str;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Выделить число</div>
+        <p class="task-description">
+          Есть стоимость в виде строки <code>"$120"</code>. То есть сначала идёт знак валюты, а затем – число.
+        </p>
+        <p class="task-description">
+          Создайте функцию <code>extractCurrencyValue(str)</code>, которая будет из такой строки выделять числовое значение и возвращать его.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">alert( extractCurrencyValue('$120') === 120 ); // true</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function extractCurrencyValue(str) {
+    return +str.slice(1);
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
