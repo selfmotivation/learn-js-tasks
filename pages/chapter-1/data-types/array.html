@@ -66,6 +66,183 @@
     <h3 class="article-list__title title">
       Массивы
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Скопирован ли массив?</div>
+        <p class="task-description">
+          Что выведет следующий код?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let fruits = ["Яблоки", "Груша", "Апельсин"];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// добавляем новое значение в "копию"</li>
+            <li class="task__code-list__item task-list__item">let shoppingCart = fruits;</li>
+            <li class="task__code-list__item task-list__item">shoppingCart.push("Банан");</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// что в fruits?</li>
+            <li class="task__code-list__item task-list__item">alert( fruits.length ); // ?</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>alert( fruits.length ); // 4</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Операции с массивами</div>
+        <p class="task-description">
+          Давайте произведём 5 операций с массивом.
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">Создайте массив <code>styles</code> с элементами «Джаз» и «Блюз».</li>
+            <li class="task-list__item">Добавьте «Рок-н-ролл» в конец.</li>
+            <li class="task-list__item">Замените значение в середине на «Классика». Ваш код для поиска значения в середине должен работать для массивов с любой длиной.</li>
+            <li class="task-list__item">Удалите первый элемент массива и покажите его.</li>
+            <li class="task-list__item">Вставьте <code>Рэп</code> и <code>Регги</code> в начало массива.</li>
+          </ol>
+        </p>
+        <p class="task-description">
+          Массив по ходу выполнения операций:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">Джаз, Блюз</li>
+            <li class="task__code-list__item task-list__item">Джаз, Блюз, Рок-н-ролл</li>
+            <li class="task__code-list__item task-list__item">Джаз, Классика, Рок-н-ролл</li>
+            <li class="task__code-list__item task-list__item">Классика, Рок-н-ролл</li>
+            <li class="task__code-list__item task-list__item">Рэп, Регги, Классика, Рок-н-ролл</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const styles = ['Джаз', 'Блюз'];
+    styles.push('Рок-н-ролл');
+    styles[Math.floor((styles.length - 1) / 2)] = 'Классика';
+    alert(styles.shift());
+    styles.unshift('Рэп', 'Регги');</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Вызов в контексте массива</div>
+        <p class="task-description">
+          Каков результат? Почему?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let arr = ["a", "b"];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">arr.push(function() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert( this );</li>
+            <li class="task__code-list__item task-list__item">});</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">arr[2](); // ?</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let arr = ["a", "b"];
+
+  arr.push(function() {
+    alert( this );
+  })
+  
+  arr[2](); // выведет alert с элементами массива:
+  
+  a,b,function() {
+    alert( this );
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Сумма введённых чисел</div>
+        <p class="task-description">
+          Напишите функцию <code>sumInput()</code>, которая:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Просит пользователя ввести значения, используя <code>prompt</code> и сохраняет их в массив.</li>
+            <li>Заканчивает запрашивать значения, когда пользователь введёт не числовое значение, пустую строку или нажмёт «Отмена».</li>
+            <li>Подсчитывает и возвращает сумму элементов массива.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          P.S. Ноль <code></code> – считается числом, не останавливайте ввод значений при вводе «0».
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function sumInput() {
+    const numbers = [];
+  
+    while (1) {
+      const value = prompt("Введите число", 0);
+  
+      if (!isFinite(value) || value === "" || value === null) break;
+      numbers.push(+value);
+    }
+  
+    let sum = 0;
+    for (let number of numbers) {
+      sum += number;
+    }
+    return sum;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Подмассив наибольшей суммы</div>
+        <p class="task-description">
+          На входе массив чисел, например: <code>arr = [1, -2, 3, 4, -9, 6]</code>.
+        </p>
+        <p class="task-description">
+          Задача: найти непрерывный подмассив в <code>arr</code>, сумма элементов в котором максимальна.
+        </p>
+        <p class="task-description">
+          Функция <code>getMaxSubSum(arr)</code> должна возвращать эту сумму.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">getMaxSubSum([-1, 2, 3, -9]) == 5 (сумма выделенных элементов)</li>
+            <li class="task__code-list__item task-list__item">getMaxSubSum([2, -1, 2, 3, -9]) == 6</li>
+            <li class="task__code-list__item task-list__item">getMaxSubSum([-1, 2, 3, -9, 11]) == 11</li>
+            <li class="task__code-list__item task-list__item">getMaxSubSum([-2, -1, 1, 2]) == 3</li>
+            <li class="task__code-list__item task-list__item">getMaxSubSum([100, -9, 2, -3, 5]) == 100</li>
+            <li class="task__code-list__item task-list__item">getMaxSubSum([1, 2, 3]) == 6 (берём все)</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Если все элементы отрицательные – ничего не берём(подмассив пустой) и сумма равна «0»:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">getMaxSubSum([-1, -2, -3]) = 0</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Попробуйте придумать быстрое решение: O(n2), а лучше за О(n) операций.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function getMaxSubSum(arr) {
+    let result = 0;
+    let currentSum = 0;
+  
+    for (let item of arr) {
+      currentSum += item; // добавляем значение элемента к partialSum
+      result = Math.max(result, currentSum); // запоминаем максимум на данный момент
+      if (currentSum < 0) currentSum = 0; // ноль если отрицательное
+    }
+  
+    return result;
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
