@@ -66,6 +66,100 @@
     <h3 class="article-list__title title">
       Деструктурирующее присваивание
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Деструктурирующее присваивание</div>
+        <p class="task-description">
+          У нас есть объект:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let user = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;name: "John",</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;years: 30</li>
+            <li class="task__code-list__item task-list__item">};</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Напишите деструктурирующее присваивание, которое:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>свойство <code>name</code> присвоит в переменную <code>name</code>.</li>
+            <li>свойство <code>years</code> присвоит в переменную <code>age</code>.</li>
+            <li>свойство <code>isAdmin</code> присвоит в переменную <code>isAdmin</code> (false, если нет такого свойства)</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Пример переменных после вашего присваивания:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let user = { name: "John", years: 30 };</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// ваш код должен быть с левой стороны:</li>
+            <li class="task__code-list__item task-list__item">// ... = user</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( name ); // John</li>
+            <li class="task__code-list__item task-list__item">alert( age ); // 30</li>
+            <li class="task__code-list__item task-list__item">alert( isAdmin ); // false</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const user = {
+    name: "John",
+    years: 30
+  };
+
+  const {name, years: age, isAdmin = false} = user;</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Максимальная зарплата</div>
+        <p class="task-description">
+          У нас есть объект <code>salaries</code> с зарплатами:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let salaries = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;"John": 100,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;"Pete": 300,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;"Mary": 250</li>
+            <li class="task__code-list__item task-list__item">};</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Создайте функцию <code>topSalary(salaries)</code>, которая возвращает имя самого высокооплачиваемого сотрудника.
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Если объект <code>salaries</code> пустой, то нужно вернуть <code>null</code>.</li>
+            <li>Если несколько высокооплачиваемых сотрудников, можно вернуть любого из них.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          P.S. Используйте <code>Object.entries</code> и деструктурирование, чтобы перебрать пары ключ/значение.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function topSalary(salaries) {
+    let maxSalary = 0;
+    let maxName = null;
+  
+    for(const [name, salary] of Object.entries(salaries)) {
+      if (salary > maxSalary) {
+        maxSalary = salary;
+        maxName = name;
+      }
+    }
+  
+    return maxName;
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
