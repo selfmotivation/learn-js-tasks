@@ -42,6 +42,86 @@
     <h3 class="article-list__title title">
       Методы прототипов, объекты без свойства __proto__
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Добавьте toString в словарь</div>
+        <p class="task-description">
+          Имеется объект <code>dictionary</code>, созданный с помощью <code>Object.create(null)</code> для хранения любых пар ключ/значение.
+        </p>
+        <p class="task-description">
+          Добавьте ему метод <code>dictionary.toString()</code>, который должен возвращать список ключей, разделённых запятой. Ваш <code>toString</code> не должен выводиться при итерации объекта с помощью цикла <code>for..in</code>.
+        </p>
+        <p class="task-description">
+          Вот так это должно работать:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let dictionary = Object.create(null);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// ваш код, который добавляет метод dictionary.toString</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// добавляем немного данных</li>
+            <li class="task__code-list__item task-list__item">dictionary.apple = "Apple";</li>
+            <li class="task__code-list__item task-list__item">dictionary.__proto__ = "test"; // здесь __proto__ -- это обычный ключ</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// только apple и __proto__ выведены в цикле</li>
+            <li class="task__code-list__item task-list__item">for(let key in dictionary) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert(key); // "apple", затем "__proto__"</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// ваш метод toString в действии</li>
+            <li class="task__code-list__item task-list__item">alert(dictionary); // "apple,__proto__"</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let dictionary = Object.create(null, {
+    toString: {
+      value() {
+        return Object.keys(this).join();
+      }
+    }
+  });}</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Разница между вызовами</div>
+        <p class="task-description">
+          Давайте создадим новый объект <code>rabbit</code>:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function Rabbit(name) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;this.name = name;</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item">Rabbit.prototype.sayHi = function() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert(this.name);</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let rabbit = new Rabbit("Rabbit");</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Все эти вызовы делают одно и тоже или нет?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">rabbit.sayHi();</li>
+            <li class="task__code-list__item task-list__item">Rabbit.prototype.sayHi();</li>
+            <li class="task__code-list__item task-list__item">Object.getPrototypeOf(rabbit).sayHi();</li>
+            <li class="task__code-list__item task-list__item">rabbit.__proto__.sayHi();</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>rabbit.sayHi();                        // Rabbit
+  Rabbit.prototype.sayHi();              // undefined
+  Object.getPrototypeOf(rabbit).sayHi(); // undefined
+  rabbit.__proto__.sayHi();              // undefined</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
