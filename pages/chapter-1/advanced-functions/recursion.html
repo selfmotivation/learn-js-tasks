@@ -63,6 +63,258 @@
     <h3 class="article-list__title title">
       Рекурсия и стек
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Вычислить сумму чисел до данного</div>
+        <p class="task-description">
+          Напишите функцию <code>sumTo(n)</code>, которая вычисляет сумму чисел <code>1 + 2 + ... + n</code>.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">sumTo(1) = 1</li>
+            <li class="task__code-list__item task-list__item">sumTo(2) = 2 + 1 = 3</li>
+            <li class="task__code-list__item task-list__item">sumTo(3) = 3 + 2 + 1 = 6</li>
+            <li class="task__code-list__item task-list__item">sumTo(4) = 4 + 3 + 2 + 1 = 10</li>
+            <li class="task__code-list__item task-list__item">...</li>
+            <li class="task__code-list__item task-list__item">sumTo(100) = 100 + 99 + ... + 2 + 1 = 5050</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Сделайте три варианта решения:
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">С использованием цикла.</li>
+            <li class="task-list__item">Через рекурсию, т.к. <code>sumTo(n) = n + sumTo(n-1)</code> for <code>n > 1</code>.</li>
+            <li class="task-list__item">С использованием формулы арифметической прогрессии.</li>
+          </ol>
+        </p>
+        <p class="task-description">
+          Пример работы вашей функции:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function sumTo(n) { /*... ваш код ... */ }</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( sumTo(100) ); // 5050</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S. Какой вариант решения самый быстрый? Самый медленный? Почему?
+        </p>
+        <p class="task-description">
+          P.P.S. Можно ли при помощи рекурсии посчитать <code>sumTo(100000)</code>?
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. function sumTo(n) {
+    let sum = 0;
+
+    for (let i = 1; i <= n; i++) {
+      sum += i;
+    }
+
+    return sum;
+  }
+
+  // Второй по скорости вариант. Нет вложенных вызовов, как в рекурсии
+
+  2. function sumTo(n) {
+    if (n === 1) return 1;
+
+    return n + sumTo(n - 1);
+  }
+
+  // Самый медленный вариант из-за вложенных вызовов
+
+  3. function sumTo(n) {
+    return n * (n + 1) / 2;
+  }
+
+  // Самый быстрый вариант - простая арифметика</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Вычислить факториал</div>
+        <p class="task-description">
+          Факториал натурального числа – это число, умноженное на <code></code>"себя минус один", затем на <code></code>"себя минус два", и так далее до <code>1</code>. Факториал <code>n</code> обозначается как <code>n!</code>
+        </p>
+        <p class="task-description">
+          Определение факториала можно записать как:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">n! = n * (n - 1) * (n - 2) * ...*1</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Примеры значений для разных n:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">1! = 1</li>
+            <li class="task__code-list__item task-list__item">2! = 2 * 1 = 2</li>
+            <li class="task__code-list__item task-list__item">3! = 3 * 2 * 1 = 6</li>
+            <li class="task__code-list__item task-list__item">4! = 4 * 3 * 2 * 1 = 24</li>
+            <li class="task__code-list__item task-list__item">5! = 5 * 4 * 3 * 2 * 1 = 120</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Задача – написать функцию <code>factorial(n)</code>, которая возвращает <code>n!</code>, используя рекурсию.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">alert( factorial(5) ); // 120</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S. Подсказка: <code>n!</code> можно записать как <code>n * (n-1)!</code> Например: <code>3! = 3*2! = 3*2*1! = 6</code>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function factorial(n) {
+    if (n === 1) return 1;
+
+    return n * factorial(n - 1);
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Числа Фибоначчи</div>
+        <p class="task-description">
+          Последовательность чисел Фибоначчи определяется формулой <code>Fn = Fn-1 + Fn-2</code>. То есть, следующее число получается как сумма двух предыдущих.
+        </p>
+        <p class="task-description">
+          Первые два числа равны <code>1</code>, затем <code>2(1+1)</code>, затем <code>3(1+2)</code>, <code>5(2+3)</code> и так далее: <code>1, 1, 2, 3, 5, 8, 13, 21...</code>.
+        </p>
+        <p class="task-description">
+          Числа Фибоначчи тесно связаны с золотым сечением и множеством природных явлений вокруг нас.
+        </p>
+        <p class="task-description">
+          Напишите функцию <code>fib(n)</code> которая возвращает <code>n-е</code> число Фибоначчи.
+        </p>
+        <p class="task-description">
+          Пример работы:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function fib(n) { /* ваш код */ }</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert(fib(3)); // 2</li>
+            <li class="task__code-list__item task-list__item">alert(fib(7)); // 13</li>
+            <li class="task__code-list__item task-list__item">alert(fib(77)); // 5527939700884757</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S. Все запуски функций из примера выше должны работать быстро. Вызов <code>fib(77)</code> должен занимать не более доли секунды.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function fib(n) {
+    let a = 1;
+    let b = 1;
+
+    for (let i = 3; i <= n; i++) {
+      let c = a + b;
+      a = b;
+      b = c;
+    }
+
+    return b;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Вывод односвязного списка</div>
+        <p class="task-description">
+          Допустим, у нас есть односвязный список (как описано в главе Рекурсия и стек):
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let list = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;value: 1,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;next: {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;value: 2,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;next: {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: 3,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;next: {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: 4,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;next: null</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">};</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Напишите функцию <code>printList(list)</code>, которая выводит элементы списка по одному.
+        </p>
+        <p class="task-description">
+          Сделайте два варианта решения: используя цикл и через рекурсию.
+        </p>
+        <p class="task-description">
+          Как лучше: с рекурсией или без?
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. function printList(list) {
+    let tmp = list;
+  
+    while (tmp) {
+      alert(tmp.value);
+      tmp = tmp.next;
+    }
+  }
+
+  2. function printList(list) {
+    alert(list.value);
+  
+    if (list.next) {
+      printList(list.next);
+    }
+  }
+
+  Рекурсия проще для понимания, цикл быстрее за счет отсутствия вложенных вызовов</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Вывод односвязного списка в обратном порядке</div>
+        <p class="task-description">
+          Выведите односвязный список из предыдущего задания Вывод односвязного списка в обратном порядке.
+        </p>
+        <p class="task-description">
+          Сделайте два решения: с использованием цикла и через рекурсию.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. function printReverseList(list) {
+    const arr = [];
+    let tmp = list;
+  
+    while (tmp) {
+      arr.unshift(tmp.value);
+      tmp = tmp.next;
+    }
+  
+    for (let i = 0; i <= arr.length - 1; i++) {
+      alert(arr[i]);
+    }
+  }
+
+  2. function printReverseList(list) {
+    if (list.next) {
+      printReverseList(list.next);
+    }
+
+    alert(list.value);
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
