@@ -42,6 +42,63 @@
     <h3 class="article-list__title title">
       Встроенные прототипы
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Добавить функциям метод "f.defer(ms)"</div>
+        <p class="task-description">
+          Добавьте всем функциям в прототип метод <code>defer(ms</code>), который вызывает функции через <code>ms</code> миллисекунд.
+        </p>
+        <p class="task-description">
+          После этого должен работать такой код:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function f() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert("Hello!");</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">f.defer(1000); // выведет "Hello!" через 1 секунду</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Function.prototype.defer = function(ms) {
+    setTimeout(this, ms);
+  };</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Добавьте функциям декорирующий метод "defer()"</div>
+        <p class="task-description">
+          Добавьте всем функциям в прототип метод <code>defer(ms)</code>, который возвращает обёртку, откладывающую вызов функции на <code>ms</code> миллисекунд.
+        </p>
+        <p class="task-description">
+          Например, должно работать так:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function f(a, b) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert( a + b );</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">f.defer(1000)(1, 2); // выведет 3 через 1 секунду.</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Пожалуйста, заметьте, что аргументы должны корректно передаваться оригинальной функции.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Function.prototype.defer = function(ms) {
+    let f = this;
+    return function(...args) {
+      setTimeout(() => f.apply(this, args), ms);
+    }
+  };</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
