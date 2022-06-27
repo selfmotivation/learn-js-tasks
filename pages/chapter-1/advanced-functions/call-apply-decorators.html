@@ -63,6 +63,215 @@
     <h3 class="article-list__title title">
       Декораторы и переадресация вызова, call/apply
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Декоратор-шпион</div>
+        <p class="task-description">
+          Создайте декоратор <code>spy(func)</code>, который должен возвращать обёртку, которая сохраняет все вызовы функции в своём свойстве <code>calls</code>.
+        </p>
+        <p class="task-description">
+          Каждый вызов должен сохраняться как массив аргументов.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function work(a, b) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert( a + b ); // произвольная функция или метод</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">work = spy(work);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">work(1, 2); // 3</li>
+            <li class="task__code-list__item task-list__item">work(4, 5); // 9</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">for (let args of work.calls) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S.: Этот декоратор иногда полезен для юнит-тестирования. Его расширенная форма – <code>sinon.spy</code> – содержится в библиотеке Sinon.JS.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function spy(func) {
+    function wrapper(...args) {
+      wrapper.calls.push(args);
+      return func.apply(this, arguments);
+    }
+  
+    wrapper.calls = [];
+  
+    return wrapper;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Задерживающий декоратор</div>
+        <p class="task-description">
+          Создайте декоратор <code>delay(f, ms)</code>, который задерживает каждый вызов <code>f</code> на <code>ms</code> миллисекунд. Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function f(x) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert(x);</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// создаём обёртки</li>
+            <li class="task__code-list__item task-list__item">let f1000 = delay(f, 1000);</li>
+            <li class="task__code-list__item task-list__item">let f1500 = delay(f, 1500);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">f1000("test"); // показывает "test" после 1000 мс</li>
+            <li class="task__code-list__item task-list__item">f1500("test"); // показывает "test" после 1500 мс</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Другими словами, <code>delay(f, ms)</code> возвращает вариант <code>f</code> с «задержкой на <code>ms</code> мс».
+        </p>
+        <p class="task-description">
+          В приведённом выше коде <code>f</code> – функция с одним аргументом, но ваше решение должно передавать все аргументы и контекст <code>this</code>.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function delay(f, ms) {
+    return function() {
+      setTimeout(() => f.apply(this, arguments), ms);
+    };
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Декоратор debounce</div>
+        <p class="task-description">
+          Результатом декоратора <code>debounce(f, ms)</code> должна быть обёртка, которая передаёт вызов <code>f</code> не более одного раза в <code>ms</code> миллисекунд. Другими словами, когда мы вызываем <code>debounce</code>, это гарантирует, что все остальные вызовы будут игнорироваться в течение <code>ms</code>.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let f = debounce(alert, 1000);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">f(1); // выполняется немедленно</li>
+            <li class="task__code-list__item task-list__item">f(2); // проигнорирован</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">setTimeout( () => f(3), 100); // проигнорирован (прошло только 100 мс)</li>
+            <li class="task__code-list__item task-list__item">setTimeout( () => f(4), 1100); // выполняется</li>
+            <li class="task__code-list__item task-list__item">setTimeout( () => f(5), 1500); // проигнорирован (прошло только 400 мс от последнего вызова)</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          На практике <code>debounce</code> полезен для функций, которые получают/обновляют данные, и мы знаем, что повторный вызов в течение короткого промежутка времени не даст ничего нового. Так что лучше не тратить на него ресурсы.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function debounce(f, ms) {
+    let isCooldown = false;
+  
+    return function() {
+      if (isCooldown) return;
+
+      f.apply(this, arguments);
+      isCooldown = true;
+      setTimeout(() => isCooldown = false, ms);
+    };
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Тормозящий (throttling) декоратор</div>
+        <p class="task-description">
+          Создайте «тормозящий» декоратор <code>throttle(f, ms)</code>, который возвращает обёртку, передавая вызов в <code>f</code> не более одного раза в <code>ms</code> миллисекунд. Те вызовы, которые попадают в период «торможения», игнорируются.
+        </p>
+        <p class="task-description">
+          <b>Отличие от <code>debounce</code> – если проигнорированный вызов является последним во время «задержки», то он выполняется в конце.</b>
+        </p>
+        <p class="task-description">
+          Давайте рассмотрим реальное применение, чтобы лучше понять это требование и выяснить, откуда оно взято.
+        </p>
+        <p class="task-description">
+          <b>Например, мы хотим отслеживать движения мыши.</b>
+        </p>
+        <p class="task-description">
+          В браузере мы можем объявить функцию, которая будет запускаться при каждом движении указателя и получать его местоположение. Во время активного использования мыши эта функция запускается очень часто, это может происходить около 100 раз в секунду (каждые 10 мс).
+        </p>
+        <p class="task-description">
+          <b>Мы бы хотели обновлять информацию на странице при передвижениях.</b>
+        </p>
+        <p class="task-description">
+          …Но функция обновления <code>update()</code> слишком ресурсоёмкая, чтобы делать это при каждом микродвижении. Да и нет смысла делать обновление чаще, чем один раз в 1000 мс.
+        </p>
+        <p class="task-description">
+          Поэтому мы обернём вызов в декоратор: будем использовать <code>throttle(update, 1000)</code> как функцию, которая будет запускаться при каждом перемещении указателя вместо оригинальной <code>update()</code>. Декоратор будет вызываться часто, но передавать вызов в <code>update()</code> максимум раз в 1000 мс.
+        </p>
+        <p class="task-description">
+          Визуально это будет выглядеть вот так:
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">Для первого движения указателя декорированный вариант сразу передаёт вызов в <code>update</code>. Это важно, т.к. пользователь сразу видит нашу реакцию на его перемещение.</li>
+            <li class="task-list__item">Затем, когда указатель продолжает движение, в течение 1000 мс ничего не происходит. Декорированный вариант игнорирует вызовы.</li>
+            <li class="task-list__item">По истечению 1000 мс происходит ещё один вызов <code>update</code> с последними координатами.</li>
+            <li class="task-list__item">Затем, наконец, указатель где-то останавливается. Декорированный вариант ждёт, пока не истечёт 1000 мс, и затем вызывает <code>update</code> с последними координатами. В итоге окончательные координаты указателя тоже обработаны.</li>
+          </ol>
+        </p>
+        <p class="task-description">
+          Пример кода:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function f(a) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;console.log(a)</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// f1000 передаёт вызовы f максимум раз в 1000 мс</li>
+            <li class="task__code-list__item task-list__item">let f1000 = throttle(f, 1000);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">f1000(1); // показывает 1</li>
+            <li class="task__code-list__item task-list__item">f1000(2); // (ограничение, 1000 мс ещё нет)</li>
+            <li class="task__code-list__item task-list__item">f1000(3); // (ограничение, 1000 мс ещё нет)</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// когда 1000 мс истекли ...</li>
+            <li class="task__code-list__item task-list__item">// ...выводим 3, промежуточное значение 2 было проигнорировано</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S. Аргументы и контекст <code>this</code>, переданные в <code>f1000</code>, должны быть переданы в оригинальную <code>f</code>.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function throttle(func, ms) {
+    let isThrottled = false,
+      savedArgs,
+      savedThis;
+  
+    function wrapper() {
+      if (isThrottled) {
+        savedArgs = arguments;
+        savedThis = this;
+        return;
+      }
+  
+      func.apply(this, arguments);
+      isThrottled = true;
+  
+      setTimeout(function() {
+        isThrottled = false;
+        if (savedArgs) {
+          wrapper.apply(savedThis, savedArgs);
+          savedArgs = savedThis = null;
+        }
+      }, ms);
+    }
+  
+    return wrapper;
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
