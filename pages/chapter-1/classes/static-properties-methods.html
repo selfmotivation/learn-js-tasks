@@ -51,6 +51,63 @@
     <h3 class="article-list__title title">
       Статические свойства и методы
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Класс расширяет объект?</div>
+        <p class="task-description">
+          Как мы уже знаем, все объекты наследуют от <code>Object.prototype</code> и имеют доступ к «общим» методам объекта, например <code>hasOwnProperty</code>.
+        </p>
+        <p class="task-description">
+          Пример:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">class Rabbit {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;constructor(name) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.name = name;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let rabbit = new Rabbit("Rab");</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// метод hasOwnProperty от Object.prototype</li>
+            <li class="task__code-list__item task-list__item">alert( rabbit.hasOwnProperty('name') ); // true</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Но что если мы явно напишем <code>"class Rabbit extends Object"</code> – тогда результат будет отличаться от обычного <code>"class Rabbit"</code>?
+        </p>
+        <p class="task-description">
+          В чем разница?
+        </p>
+        <p class="task-description">
+          Ниже пример кода с таким наследованием (почему он не работает? исправьте его):
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">class Rabbit extends Object {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;constructor(name) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.name = name;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let rabbit = new Rabbit("Кроль");</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( rabbit.hasOwnProperty('name') ); // Ошибка</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>class Rabbit extends Object {
+    constructor(name) {
+      super();
+      this.name = name;
+    }
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
