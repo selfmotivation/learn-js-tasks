@@ -66,6 +66,239 @@
     <h3 class="article-list__title title">
       Дата и время
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Создайте дату</div>
+        <p class="task-description">
+          Создайте объект <code>Date</code> для даты: 20 февраля 2012 года, 3 часа 12 минут. Временная зона – местная.
+        </p>
+        <p class="task-description">
+          Для вывода используйте <code>alert</code>.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const date = new Date(2012, 1, 20, 3, 12);
+    alert(date);</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Покажите день недели</div>
+        <p class="task-description">
+          Напишите функцию <code>getWeekDay(date)</code>, показывающую день недели в коротком формате: «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let date = new Date(2012, 0, 3);  // 3 января 2012 года</li>
+            <li class="task__code-list__item task-list__item">alert( getWeekDay(date) );        // нужно вывести "ВТ"</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function getWeekDay(date) {
+    const days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+  
+    return days[date.getDay()];
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">День недели в европейской нумерации</div>
+        <p class="task-description">
+          В Европейских странах неделя начинается с понедельника (день номер 1), затем идёт вторник (номер 2) и так до воскресенья (номер 7). Напишите функцию <code>getLocalDay(date)</code>, которая возвращает «европейский» день недели для даты <code>date</code>.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let date = new Date(2012, 0, 3);  // 3 января 2012 года</li>
+            <li class="task__code-list__item task-list__item">alert( getLocalDay(date) );       // вторник, нужно показать 2</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function getLocalDay(date) {
+    const day = date.getDay();
+  
+    if (day === 0) day = 7;
+  
+    return day;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Какой день месяца был много дней назад?</div>
+        <p class="task-description">
+          Создайте функцию <code>getDateAgo(date, days)</code>, возвращающую число, которое было <code>days</code> дней назад от даты <code>date</code>.
+        </p>
+        <p class="task-description">
+          К примеру, если сегодня двадцатое число, то <code>getDateAgo(new Date(), 1)</code> вернёт девятнадцатое и <code>getDateAgo(new Date(), 2)</code> – восемнадцатое.
+        </p>
+        <p class="task-description">
+          Функция должна надёжно работать при значении <code>days=365</code> и больших значениях:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let date = new Date(2015, 0, 2);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)</li>
+            <li class="task__code-list__item task-list__item">alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)</li>
+            <li class="task__code-list__item task-list__item">alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S. Функция не должна изменять переданный ей объект <code>date</code>.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function getDateAgo(date, days) {
+    let dateCopy = new Date(date);
+  
+    dateCopy.setDate(date.getDate() - days);
+
+    return dateCopy.getDate();
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Последнее число месяца?</div>
+        <p class="task-description">
+          Напишите функцию <code>getLastDayOfMonth(year, month)</code>, возвращающую последнее число месяца. Иногда это 30, 31 или даже февральские 28/29.
+        </p>
+        <p class="task-description">
+          Параметры:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li><code>year</code> – год из четырёх цифр, например, 2012.</li>
+            <li><code>month</code> – месяц от 0 до 11.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          К примеру, <code>getLastDayOfMonth(2012, 1) = 29</code> (високосный год, февраль).
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function getLastDayOfMonth(year, month) {
+    const date = new Date(year, month + 1, 0);
+
+    return date.getDate();
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Сколько сегодня прошло секунд?</div>
+        <p class="task-description">
+          Напишите функцию <code>getSecondsToday()</code>, возвращающую количество секунд с начала сегодняшнего дня.
+        </p>
+        <p class="task-description">
+          Например, если сейчас <code>10:00</code>, и не было перехода на зимнее/летнее время, то:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">getSecondsToday() == 36000 // (3600 * 10)</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Функция должна работать в любой день, т.е. в ней не должно быть конкретного значения сегодняшней даты.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function getSecondsToday() {
+    const date = new Date();
+
+    return date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Сколько секунд осталось до завтра?</div>
+        <p class="task-description">
+          Создайте функцию <code>getSecondsToTomorrow()</code>, возвращающую количество секунд до завтрашней даты.
+        </p>
+        <p class="task-description">
+          Например, если сейчас <code>23:00</code>, то:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">getSecondsToTomorrow() == 3600</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S. Функция должна работать в любой день, т.е. в ней не должно быть конкретного значения сегодняшней даты.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function getSecondsToTomorrow() {
+    const date = new Date();
+    const currentSeconds = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
+    const secondsInADay = 86400;
+  
+    return secondsInADay - currentSeconds;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Форматирование относительной даты</div>
+        <p class="task-description">
+          Напишите функцию <code>formatDate(date)</code>, форматирующую <code>date</code> по следующему принципу:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Если спустя <code>date</code> прошло менее 1 секунды, вывести <code>"прямо сейчас"</code>.</li>
+            <li>В противном случае, если с <code>date</code> прошло меньше 1 минуты, вывести <code>"n сек. назад"</code>.</li>
+            <li>В противном случае, если меньше часа, вывести <code>"m мин. назад"</code>.</li>
+            <li>В противном случае, полная дата в формате <code>"DD.MM.YY HH:mm"</code>. А именно: <code>"день.месяц.год часы:минуты"</code>, всё в виде двух цифр, т.е. <code>31.12.16 10:00</code>.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">alert( formatDate(new Date(new Date - 1)) ); // "прямо сейчас"</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 сек. назад"</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 мин. назад"</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// вчерашняя дата вроде 31.12.2016, 20:00</li>
+            <li class="task__code-list__item task-list__item">alert( formatDate(new Date(new Date - 86400 * 1000)) );</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function formatDate(date) {
+    let dayOfMonth = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let hour = date.getHours();
+    let minutes = date.getMinutes();
+    let diffMs = new Date() - date;
+    let diffSec = Math.round(diffMs / 1000);
+    let diffMin = diffSec / 60;
+    let diffHour = diffMin / 60;
+  
+    year = year.toString().slice(-2);
+    month = month < 10 ? '0' + month : month;
+    dayOfMonth = dayOfMonth < 10 ? '0' + dayOfMonth : dayOfMonth;
+    hour = hour < 10 ? '0' + hour : hour;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+  
+    if (diffSec < 1) {
+      return 'прямо сейчас';
+    } else if (diffMin < 1) {
+      return `${diffSec} сек. назад`
+    } else if (diffHour < 1) {
+      return `${diffMin} мин. назад`
+    } else {
+      return `${dayOfMonth}.${month}.${year} ${hour}:${minutes}`
+    }
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
