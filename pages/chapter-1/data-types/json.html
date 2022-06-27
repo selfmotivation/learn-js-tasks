@@ -66,6 +66,74 @@
     <h3 class="article-list__title title">
       Формат JSON, метод toJSON
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Преобразуйте объект в JSON, а затем обратно в обычный объект</div>
+        <p class="task-description">
+          Преобразуйте <code>user</code> в JSON, затем прочитайте этот JSON в другую переменную.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let user = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;name: "Василий Иванович",</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;age: 35</li>
+            <li class="task__code-list__item task-list__item">};</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const jsonUser = JSON.parse(JSON.stringify(user));</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Исключить обратные ссылки</div>
+        <p class="task-description">
+          В простых случаях циклических ссылок мы можем исключить свойство, из-за которого они возникают, из сериализации по его имени.
+        </p>
+        <p class="task-description">
+          Но иногда мы не можем использовать имя, так как могут быть и другие, нужные, свойства с этим именем во вложенных объектах. Поэтому можно проверять свойство по значению.
+        </p>
+        <p class="task-description">
+          Напишите функцию <code>replacer</code> для JSON-преобразования, которая удалит свойства, ссылающиеся на <code>meetup</code>:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let room = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;number: 23</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let meetup = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;title: "Совещание",</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;occupiedBy: [{name: "Иванов"}, {name: "Петров"}],</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;place: room</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// цикличные ссылки</li>
+            <li class="task__code-list__item task-list__item">room.occupiedBy = meetup;</li>
+            <li class="task__code-list__item task-list__item">meetup.self = meetup;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( JSON.stringify(meetup, function replacer(key, value) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;/* ваш код */</li>
+            <li class="task__code-list__item task-list__item">}));</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">/* в результате должно быть:</li>
+            <li class="task__code-list__item task-list__item">{</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;"title":"Совещание",</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;"occupiedBy":[{"name":"Иванов"},{"name":"Петров"}],</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;"place":{"number":23}</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item">*/</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function replacer(key, value) {
+    return (key != "" && value === meetup) ? undefined : value;
+  };</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
