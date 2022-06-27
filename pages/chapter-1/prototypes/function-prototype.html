@@ -42,6 +42,137 @@
     <h3 class="article-list__title title">
       F.prototype
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Изменяем "prototype"</div>
+        <p class="task-description">
+          В коде ниже мы создаём нового кролика <code>new Rabbit</code>, а потом пытаемся изменить его прототип.
+        </p>
+        <p class="task-description">
+          Сначала у нас есть такой код:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function Rabbit() {}</li>
+            <li class="task__code-list__item task-list__item">Rabbit.prototype = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;eats: true</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let rabbit = new Rabbit();</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( rabbit.eats ); // true</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">
+              Добавим одну строчку (выделенную в коде ниже). Что вызов <code>alert</code> покажет нам сейчас?
+              <code class="task__code">
+                <ol class="task__code-list">
+                  <li class="task__code-list__item task-list__item">function Rabbit() {}</li>
+                  <li class="task__code-list__item task-list__item">Rabbit.prototype = {</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;eats: true</li>
+                  <li class="task__code-list__item task-list__item">};</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">let rabbit = new Rabbit();</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">Rabbit.prototype = {};</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">alert( rabbit.eats ); // true</li>
+                </ol>
+              </code>
+            </li>
+            <li class="task-list__item">
+              …А если код такой (заменили одну строчку)?
+              <code class="task__code">
+                <ol class="task__code-list">
+                  <li class="task__code-list__item task-list__item">function Rabbit() {}</li>
+                  <li class="task__code-list__item task-list__item">Rabbit.prototype = {</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;eats: true</li>
+                  <li class="task__code-list__item task-list__item">};</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">let rabbit = new Rabbit();</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">Rabbit.prototype.eats = false;</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">alert( rabbit.eats ); // true</li>
+                </ol>
+              </code>
+            </li>
+            <li class="task-list__item">
+              Или такой (заменили одну строчку)?
+              <code class="task__code">
+                <ol class="task__code-list">
+                  <li class="task__code-list__item task-list__item">function Rabbit() {}</li>
+                  <li class="task__code-list__item task-list__item">Rabbit.prototype = {</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;eats: true</li>
+                  <li class="task__code-list__item task-list__item">};</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">let rabbit = new Rabbit();</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">delete rabbit.eats;</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">alert( rabbit.eats ); // true</li>
+                </ol>
+              </code>
+            </li>
+            <li class="task-list__item">
+              Или, наконец, такой:
+              <code class="task__code">
+                <ol class="task__code-list">
+                  <li class="task__code-list__item task-list__item">function Rabbit() {}</li>
+                  <li class="task__code-list__item task-list__item">Rabbit.prototype = {</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;eats: true</li>
+                  <li class="task__code-list__item task-list__item">};</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">let rabbit = new Rabbit();</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">delete Rabbit.prototype.eats;</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">alert( rabbit.eats ); // true</li>
+                </ol>
+              </code>
+            </li>
+          </ol>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. true
+  2. false
+  3. true
+  4. undefined</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Создайте новый объект с помощью уже существующего</div>
+        <p class="task-description">
+          Представьте, что у нас имеется некий объект <code>obj</code>, созданный функцией-конструктором – мы не знаем какой именно, но хотелось бы создать ещё один объект такого же типа.
+        </p>
+        <p class="task-description">
+          Можем ли мы сделать так?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let obj2 = new obj.constructor();</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Приведите пример функции-конструктора для объекта <code>obj</code>, с которой такой вызов корректно сработает. И пример функции-конструктора, с которой такой код поведёт себя неправильно.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function User(name) {
+    this.name = name;
+  }
+  
+  let user = new User('John');
+  let user2 = new user.constructor('Pete');
+  
+  alert( user2.name );</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
