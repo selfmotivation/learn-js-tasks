@@ -63,6 +63,78 @@
     <h3 class="article-list__title title">
       Объект функции, NFE
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Установка и уменьшение значения счётчика</div>
+        <p class="task-description">
+          Измените код <code>makeCounter()</code> так, чтобы счётчик мог увеличивать и устанавливать значение:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li><code>counter()</code> должен возвращать следующее значение (как и раньше).</li>
+            <li><code>counter.set(value)</code> должен устанавливать счётчику значение <code>value</code>.</li>
+            <li><code>counter.decrease()</code> должен уменьшать значение счётчика на 1.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Посмотрите код из песочницы с полным примером использования.
+        </p>
+        <p class="task-description">
+          P.S. Для того, чтобы сохранить текущее значение счётчика, можно воспользоваться как замыканием, так и свойством функции. Или сделать два варианта решения: и так, и так.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function makeCounter() {
+    let count = 0;
+  
+    function counter() {
+      return count++;
+    }
+  
+    counter.set = value => count = value;
+    counter.decrease = () => count--;
+  
+    return counter;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Сумма с произвольным количеством скобок</div>
+        <p class="task-description">
+          Напишите функцию <code>sum</code>, которая бы работала следующим образом:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">sum(1)(2) == 3; // 1 + 2</li>
+            <li class="task__code-list__item task-list__item">sum(1)(2)(3) == 6; // 1 + 2 + 3</li>
+            <li class="task__code-list__item task-list__item">sum(5)(-1)(2) == 6</li>
+            <li class="task__code-list__item task-list__item">sum(6)(-1)(-2)(-3) == 0</li>
+            <li class="task__code-list__item task-list__item">sum(0)(1)(2)(3)(4)(5) == 15</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          P.S. Подсказка: возможно вам стоит сделать особый метод преобразования в примитив для функции.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function sum(a) {
+    let currentSum = a;
+  
+    function f(b) {
+      currentSum += b;
+      return f;
+    }
+  
+    f.toString = function() {
+      return currentSum;
+    };
+  
+    return f;
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
