@@ -51,6 +51,116 @@
     <h3 class="article-list__title title">
       Наследование классов
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Ошибка создания экземпляра класса</div>
+        <p class="task-description">
+          В коде ниже класс <code>Rabbit</code> наследует <code>Animal</code>.
+        </p>
+        <p class="task-description">
+          К сожалению, объект класса <code>Rabbit</code> не создаётся. Что не так? Исправьте ошибку.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">class Animal {</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;constructor(name) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.name = name;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">class Rabbit extends Animal {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;constructor(name) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.name = name;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.created = Date.now();</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let rabbit = new Rabbit("Белый кролик"); // Error: this is not defined</li>
+            <li class="task__code-list__item task-list__item">alert(rabbit.name);</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>class Rabbit extends Animal {
+    constructor(name) {
+      super(name);
+      this.created = Date.now();
+    }
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Улучшенные часы</div>
+        <p class="task-description">
+          У нас есть класс <code>Clock</code>. Сейчас он выводит время каждую секунду
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">class Clock {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;constructor({ template }) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.template = template;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;render() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;let date = new Date();</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;let hours = date.getHours();</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;if (hours < 10) hours = '0' + hours;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;let mins = date.getMinutes();</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;if (mins < 10) mins = '0' + mins;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;let secs = date.getSeconds();</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;if (secs < 10) secs = '0' + secs;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;let output = this.template</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.replace('h', hours)</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.replace('m', mins)</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.replace('s', secs);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;console.log(output);</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;stop() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;clearInterval(this.timer);</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;start() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.render();</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.timer = setInterval(() => this.render(), 1000);</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Создайте новый класс <code>ExtendedClock</code>, который будет наследоваться от <code>Clock</code> и добавьте параметр <code>precision</code> – количество миллисекунд между «тиками». Установите значение в <code>1000</code> (1 секунда) по умолчанию.
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Сохраните ваш код в файл <code>extended-clock.js</code></li>
+            <li>Не изменяйте класс <code>clock.js</code>. Расширьте его.</li>
+          </ul>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>class ExtendedClock extends Clock {
+    constructor(options) {
+      super(options);
+      let { precision=1000 } = options;
+      this.precision = precision;
+    }
+  
+    start() {
+      this.render();
+      this.timer = setInterval(() => this.render(), this.precision);
+    }
+  };</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
