@@ -63,6 +63,277 @@
     <h3 class="article-list__title title">
       Замыкание
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Независимы ли счётчики?</div>
+        <p class="task-description">
+          Здесь мы делаем два счётчика: <code>counter</code> и <code>counter2</code>, используя одну и ту же функцию <code>makeCounter</code>.
+        </p>
+        <p class="task-description">
+          Они независимы? Что покажет второй счётчик? <code>0,1</code> или <code>2,3</code> или что-то ещё?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function makeCounter() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;let count = 0;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;return function() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;return count++;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;};</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let counter = makeCounter();</li>
+            <li class="task__code-list__item task-list__item">let counter2 = makeCounter();</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( counter() ); // 0</li>
+            <li class="task__code-list__item task-list__item">alert( counter() ); // 1</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( counter2() ); // ?</li>
+            <li class="task__code-list__item task-list__item">alert( counter2() ); // ?</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Счетчики независимы. Второй счетчик покажет 0, 1</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Объект счётчика</div>
+        <p class="task-description">
+          Здесь объект счётчика создан с помощью функции-конструктора.
+        </p>
+        <p class="task-description">
+          Будет ли он работать? Что покажет?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function Counter() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;let count = 0;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;this.up = function() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;return ++count;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;};</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;this.down = function() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;return --count;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;};</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let counter = new Counter();</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( counter.up() ); // ?</li>
+            <li class="task__code-list__item task-list__item">alert( counter.up() ); // ?</li>
+            <li class="task__code-list__item task-list__item">alert( counter.down() ); // ?</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Будет работать. Покажет 1, 2, 1</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Функция в if</div>
+        <p class="task-description">
+          Посмотрите на код. Какой будет результат у вызова на последней строке?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let phrase = "Hello";</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">if (true) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;let user = "John";</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;function sayHi() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;alert(`${phrase}, ${user}`);</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">sayHi();</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Ошибка. Функция создается внутри блока кода, а вызывается вне его.</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Сумма с помощью замыканий</div>
+        <p class="task-description">
+          Напишите функцию <code>sum</code>, которая работает таким образом: <code>sum(a)(b) = a+b</code>.
+        </p>
+        <p class="task-description">
+          Да, именно таким образом, используя двойные круглые скобки (не опечатка).
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">sum(1)(2) = 3</li>
+            <li class="task__code-list__item task-list__item">sum(5)(-1) = 4</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function sum(a) {
+    return function(b) {
+      return a + b;
+    };
+  };</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Фильтрация с помощью функции</div>
+        <p class="task-description">
+          У нас есть встроенный метод <code>arr.filter(f)</code> для массивов. Он фильтрует все элементы с помощью функции <code>f</code>. Если она возвращает <code>true</code>, то элемент добавится в возвращаемый массив.
+        </p>
+        <p class="task-description">
+          Сделайте набор «готовых к употреблению» фильтров:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li><code>inBetween(a, b)</code> – между <code>a</code> и <code>b</code> (включительно).</li>
+            <li><code>inArray([...])</code> – находится в данном массиве.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Они должны использоваться таким образом:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li><code>arr.filter(inBetween(3,6))</code> – выбирает только значения между 3 и 6 (включительно).</li>
+            <li><code>arr.filter(inArray([1,2,3]))</code> – выбирает только элементы, совпадающие с одним из элементов массива</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">/* .. ваш код для inBetween и inArray */</li>
+            <li class="task__code-list__item task-list__item">let arr = [1, 2, 3, 4, 5, 6, 7];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( arr.filter(inArray([1, 2, 10])) ); // 1,2</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function inBetween(a, b) {
+    return function(x) {
+      return x >= a && x <= b;
+    };
+  }
+
+  function inArray(arr) {
+    return function(x) {
+      return arr.includes(x);
+    };
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Сортировать по полю</div>
+        <p class="task-description">
+          У нас есть массив объектов, который нужно отсортировать:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let users = [</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{ name: "John", age: 20, surname: "Johnson" },</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{ name: "Pete", age: 18, surname: "Peterson" },</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;{ name: "Ann", age: 19, surname: "Hathaway" }</li>
+            <li class="task__code-list__item task-list__item">];</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Обычный способ был бы таким:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">// по имени (Ann, John, Pete)</li>
+            <li class="task__code-list__item task-list__item">users.sort((a, b) => a.name > b.name ? 1 : -1);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// по возрасту (Pete, Ann, John)</li>
+            <li class="task__code-list__item task-list__item">users.sort((a, b) => a.age > b.age ? 1 : -1);</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Можем ли мы сделать его короче, скажем, вот таким?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">users.sort(byField('name'));</li>
+            <li class="task__code-list__item task-list__item">users.sort(byField('age'));</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          То есть, чтобы вместо функции, мы просто писали <code>byField(fieldName)</code>.
+        </p>
+        <p class="task-description">
+          Напишите функцию <code>byField</code>, которая может быть использована для этого.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function byField(field) {
+    return (a, b) => a[field] > b[field] ? 1 : -1;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Армия функций</div>
+        <p class="task-description">
+          Следующий код создаёт массив из стрелков (<code>shooters</code>).
+        </p>
+        <p class="task-description">
+          Каждая функция предназначена выводить их порядковые номера. Но что-то пошло не так…
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">function makeArmy() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;let shooters = [];</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;let i = 0;;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;while (i < 10) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;let shooter = function() { // функция shooter</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert( i ); // должна выводить порядковый номер</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;};</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;shooters.push(shooter);</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;i++;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;return shooters;</li>
+            <li class="task__code-list__item task-list__item">}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let army = makeArmy();</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">army[0](); // у 0-го стрелка будет номер 10</li>
+            <li class="task__code-list__item task-list__item">army[5](); // и у 5-го стрелка тоже будет номер 10</li>
+            <li class="task__code-list__item task-list__item">// ... у всех стрелков будет номер 10, вместо 0, 1, 2, 3...</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Почему у всех стрелков одинаковые номера? Почините код, чтобы он работал как задумано.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function makeArmy() {
+    const shooters = [];
+  
+    for(let i = 0; i < 10; i++) {
+      let shooter = function() {
+        alert(i);
+      };
+
+      shooters.push(shooter);
+    }
+  
+    return shooters;
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
