@@ -42,6 +42,192 @@
     <h3 class="article-list__title title">
       Прототипы, наследование
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Работа с прототипами</div>
+        <p class="task-description">
+          В приведённом ниже коде создаются и изменяются два объекта.
+        </p>
+        <p class="task-description">
+          Какие значения показываются в процессе выполнения кода?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let animal = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;jumps: null</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item">let rabbit = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;__proto__: animal,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;jumps: true</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( rabbit.jumps ); // ? (1)</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">delete rabbit.jumps;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( rabbit.jumps ); // ? (2)</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">delete animal.jumps;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( rabbit.jumps ); // ? (3)</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Должно быть 3 ответа.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>true, берётся из rabbit.
+  null, берётся из animal.
+  undefined, нет свойства.</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Алгоритм поиска</div>
+        <p class="task-description">
+          Задача состоит из двух частей.
+        </p>
+        <p class="task-description">
+          У нас есть объекты:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let head = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;glasses: 1</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let table = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;pen: 3</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let bed = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;sheet: 1,</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;pillow: 2</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let pockets = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;money: 2000</li>
+            <li class="task__code-list__item task-list__item">};</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">С помощью свойства <code>__proto__</code> задайте прототипы так, чтобы поиск любого свойства выполнялся по следующему пути: <code>pockets</code> → <code>bed</code> → <code>table</code> → <code>head</code>. Например, <code>pockets.pen</code> должно возвращать значение <code>3</code> (найденное в <code>table</code>), а <code>bed.glasses</code> – значение <code>1</code> (найденное в <code>head</code>).</li>
+            <li class="task-list__item">Ответьте на вопрос: как быстрее получить значение <code>glasses</code> – через <code>pockets.glasses</code> или через <code>head.glasses</code>? При необходимости составьте цепочки поиска и сравните их.</li>
+          </ol>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. const head = {
+    glasses: 1
+  };
+  
+  const table = {
+    pen: 3,
+    __proto__: head
+  };
+  
+  const bed = {
+    sheet: 1,
+    pillow: 2,
+    __proto__: table
+  };
+  
+  const pockets = {
+    money: 2000,
+    __proto__: bed
+  };
+
+  2. С точки зрения производительности, для современных движков неважно, откуда берётся свойство
+  – из объекта или из прототипа. Они запоминают, где было найдено свойство, и повторно
+  используют его в следующем запросе.</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Куда будет произведена запись?</div>
+        <p class="task-description">
+          Объект <code>rabbit</code> наследует от объекта <code>animal</code>.
+        </p>
+        <p class="task-description">
+          Какой объект получит свойство <code>full</code> при вызове <code>rabbit.eat()</code>: <code>animal</code> или <code>rabbit</code>?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let animal = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;eat() {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.full = true;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let rabbit = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;__proto__: animal</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">rabbit.eat();</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>rabbit</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Почему наедаются оба хомяка?</div>
+        <p class="task-description">
+          У нас есть два хомяка: шустрый (<code>speedy</code>) и ленивый (<code>lazy</code>); оба наследуют от общего объекта <code>hamster</code>.
+        </p>
+        <p class="task-description">
+          Когда мы кормим одного хомяка, второй тоже наедается. Почему? Как это исправить?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let hamster = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;stomach: [],</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;eat(food) {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;this.stomach.push(food);</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let speedy = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;__proto__: hamster</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">let lazy = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;__proto__: hamster</li>
+            <li class="task__code-list__item task-list__item">};</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// Этот хомяк нашёл еду</li>
+            <li class="task__code-list__item task-list__item">speedy.eat("apple");</li>
+            <li class="task__code-list__item task-list__item">alert( speedy.stomach ); // apple</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// У этого хомяка тоже есть еда. Почему? Исправьте</li>
+            <li class="task__code-list__item task-list__item">alert( lazy.stomach ); // apple</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let hamster = {
+    stomach: [],
+  
+    eat(food) {
+      this.stomach.push(food);
+    }
+  };
+  
+  let speedy = {
+    __proto__: hamster,
+    stomach: []
+  };
+  
+  let lazy = {
+    __proto__: hamster,
+    stomach: []
+  };</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
