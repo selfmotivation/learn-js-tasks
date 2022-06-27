@@ -51,6 +51,55 @@
     <h3 class="article-list__title title">
       Класс: базовый синтаксис
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Перепишите класс</div>
+        <p class="task-description">
+          Класс <code>Clock</code> написан в функциональном стиле. Перепишите его, используя современный синтаксис классов.
+        </p>
+        <p class="task-description">
+          P.S. Часики тикают в консоли. Откройте её, чтобы посмотреть.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>class Clock {
+    constructor({ template }) {
+      this.template = template;
+    }
+  
+    render() {
+      let date = new Date();
+  
+      let hours = date.getHours();
+      if (hours < 10) hours = '0' + hours;
+  
+      let mins = date.getMinutes();
+      if (mins < 10) mins = '0' + mins;
+  
+      let secs = date.getSeconds();
+      if (secs < 10) secs = '0' + secs;
+  
+      let output = this.template
+        .replace('h', hours)
+        .replace('m', mins)
+        .replace('s', secs);
+  
+      console.log(output);
+    }
+  
+    stop() {
+      clearInterval(this.timer);
+    }
+  
+    start() {
+      this.render();
+      this.timer = setInterval(() => this.render(), 1000);
+    }
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
