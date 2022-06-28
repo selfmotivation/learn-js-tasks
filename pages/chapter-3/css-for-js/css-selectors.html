@@ -81,6 +81,167 @@
     <h3 class="article-list__title title">
       Знаете ли вы селекторы?
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Выберите элементы селектором</div>
+        <p class="task-description">
+          HTML-документ:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;input type="checkbox"&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;input type="checkbox" checked&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;input type="text" id="message"&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&lsaquo;h3 id="widget-title"&rsaquo;Сообщения:&lsaquo;/h3&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;ul id="messages"&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li id="message-1"&rsaquo;Сообщение 1&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li id="message-2"&rsaquo;Сообщение 2&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li id="message-3" data-action="delete"&rsaquo;Сообщение 3&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li id="message-4" data-action="edit do-not-delete"&rsaquo;Сообщение 4&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li id="message-5" data-action="edit delete"&rsaquo;Сообщение 5&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;&lsaquo;a href="#"&rsaquo;...&lsaquo;/a&rsaquo;&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/ul&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&lsaquo;a href="http://site.com/list.zip"&rsaquo;Ссылка на архив&lsaquo;/a&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;a href="http://site.com/list.pdf"&rsaquo;..И на PDF&lsaquo;/a&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Задания:
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">Выбрать <code>input</code> типа <code>checkbox</code>.</li>
+            <li class="task-list__item">Выбрать <code>input</code> типа <code>checkbox</code>, НЕ отмеченный.</li>
+            <li class="task-list__item">Найти все элементы с <code>id=message</code> или <code>message-*</code>.</li>
+            <li class="task-list__item">Найти все элементы с <code>id=message-*</code>.</li>
+            <li class="task-list__item">Найти все ссылки с расширением <code>href="...zip"</code>.</li>
+            <li class="task-list__item">Найти все элементы с атрибутом <code>data-action</code>, содержащим <code>delete</code> в списке (через пробел).</li>
+            <li class="task-list__item">Найти все элементы, у которых ЕСТЬ атрибут <code>data-action</code>, но он НЕ содержит <code>delete</code> в списке (через пробел).</li>
+            <li class="task-list__item">Выбрать все чётные элементы списка <code>#messages</code>.</li>
+            <li class="task-list__item">Выбрать один элемент сразу за заголовком <code>h3#widget-title</code> на том же уровне вложенности.</li>
+            <li class="task-list__item">Выбрать все ссылки, следующие за заголовком <code>h3#widget-title</code> на том же уровне вложенности.</li>
+            <li class="task-list__item">Выбрать ссылку внутри последнего элемента списка <code>#messages</code>.</li>
+          </ol>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. document.querySelectorAll('input[type="checkbox"]');
+  2. document.querySelectorAll('input[type="checkbox"]:not(:checked)');
+  3. document.querySelectorAll('[id|="message"]');
+  4. document.querySelectorAll('[id^="message-"]');
+  5. document.querySelectorAll('a[href$=".zip"]');
+  6. document.querySelectorAll('[data-action~="delete"]');
+  7. document.querySelectorAll('[data-action]:not([data-action~="delete"])');
+  8. document.querySelectorAll('#messages li:nth-child(2n)');
+  9. document.querySelectorAll('h3#widget-title + *');
+  10. document.querySelectorAll('h3#widget-title ~ a');
+  11. document.querySelectorAll('#messages li:last-child a');</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Отступ между элементами, размер одна строка</div>
+        <p class="task-description">
+          Есть список <code>UL/LI</code>.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">Текст вверху без отступа от списка.</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;ul&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Маша&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Паша&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Даша&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Женя&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Саша&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Гоша&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/ul&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">Текст внизу без отступа от списка.</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Размеры шрифта и строки заданы стилем:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">body {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;font: 14px/1.5 serif;</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          <b>Сделайте, чтобы между элементами был вертикальный отступ.</b>
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Размер отступа: ровно 1 строка.</li>
+            <li>Нужно добавить только одно правило CSS с одним псевдоселектором, можно использовать CSS3.</li>
+            <li>Не должно быть лишних отступов сверху и снизу списка.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Результат:
+        </p>
+        <img src="../../../assets/img/css-selectors-task-2.png" alt="css-selectors-task-2">
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>li + li {
+    margin-top: 1.5em;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Отступ между парами, размером со строку</div>
+        <p class="task-description">
+          Есть список <code>UL/LI</code>.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">Текст вверху без отступа от списка.</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;ul&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Маша&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Паша&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Даша&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Женя&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Саша&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Гоша&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/ul&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">Текст внизу без отступа от списка.</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Размеры шрифта и строки заданы стилем:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">body {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;font: 14px/1.5 serif;</li>
+            <li class="task__code-list__item task-list__item">}</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          <b>Сделайте, чтобы между каждой парой элементов был вертикальный отступ.</b>
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Размер отступа: ровно 1 строка.</li>
+            <li>Нужно добавить только одно правило CSS, можно использовать CSS3.</li>
+            <li>Не должно быть лишних отступов сверху и снизу списка.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Результат:
+        </p>
+        <img src="../../../assets/img/css-selectors-task-3.png" alt="css-selectors-task-3">
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>li:nth-child(odd):not(:first-child) {
+    margin-top: 1.5em;
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
