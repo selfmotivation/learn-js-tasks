@@ -63,6 +63,416 @@
     <h3 class="article-list__title title">
       Изменение документа
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">createTextNode vs innerHTML vs textContent</div>
+        <p class="task-description">
+          У нас есть пустой DOM-элемент <code>elem</code> и строка <code>text</code>.
+        </p>
+        <p class="task-description">
+          Какие из этих 3-х команд работают одинаково?
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item"><code>elem.append(document.createTextNode(text))</code></li>
+            <li class="task-list__item"><code>elem.innerHTML = text</code></li>
+            <li class="task-list__item"><code>elem.textContent = text</code></li>
+          </ol>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1 и 3</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Очистите элемент</div>
+        <p class="task-description">
+          Создайте функцию <code>clear(elem)</code>, которая удаляет всё содержимое из <code>elem</code>.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;ol id="elem"&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Привет&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;Мир&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/ol&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&lsaquo;script&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;function clear(elem) { /* ваш код */ }</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;clear(elem); // очищает список</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/script&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function clear(elem) {
+    elem.innerHTML = '';
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Почему остаётся "aaa"?</div>
+        <p class="task-description">
+          В примере ниже вызов <code>table.remove()</code> удаляет таблицу из документа.
+        </p>
+        <p class="task-description">
+          Но если вы запустите его, вы увидите, что текст <code>"aaa"</code> все еще виден.
+        </p>
+        <p class="task-description">
+          Почему так происходит?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;table id="table"&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;aaa</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&lsaquo;td&rsaquo;Тест&lsaquo;/td&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;/tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/table&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&lsaquo;script&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert(table); // таблица, как и должно быть</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;table.remove();</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;// почему в документе остался текст "ааа"?</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/script&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>В table не может быть текста без тегов, такой текст выводится до таблицы.</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Создайте список</div>
+        <p class="task-description">
+          Напишите интерфейс для создания списка.
+        </p>
+        <p class="task-description">
+          Для каждого пункта:
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">Запрашивайте содержимое пункта у пользователя с помощью <code>prompt</code>.</li>
+            <li class="task-list__item">Создавайте элемент <code>&lsaquo;li&rsaquo;</code> и добавляйте его к <code>&lsaquo;ul&rsaquo;</code>.</li>
+            <li class="task-list__item">Продолжайте до тех пор, пока пользователь не отменит ввод (нажатием клавиши Esc или введя пустую строку).</li>
+          </ol>
+        </p>
+        <p class="task-description">
+          Все элементы должны создаваться динамически.
+        </p>
+        <p class="task-description">
+          Если пользователь вводит HTML-теги, они должны обрабатываться как текст.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let ul = document.createElement('ul');
+    document.body.append(ul);
+
+    while (true) {
+      let data = prompt("Введите текст для элемента списка", "");
+
+      if (!data) {
+        break;
+      }
+
+      let li = document.createElement('li');
+      li.textContent = data;
+      ul.append(li);
+    }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Создайте дерево из объекта</div>
+        <p class="task-description">
+          Напишите функцию <code>createTree</code>, которая создаёт вложенный список <code>ul/li</code> из объекта.
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let data = {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;"Рыбы": {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;"форель": {},</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;"лосось": {}</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;},</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;"Деревья": {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;"Огромные": {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"секвойя": {},</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"дуб": {}</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;},</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;"Цветковые": {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"яблоня": {},</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"магнолия": {}</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">};</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Синтаксис:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let container = document.getElementById('container');</li>
+            <li class="task__code-list__item task-list__item">createTree(container, data); // создаёт дерево в контейнере</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Результат (дерево):
+        </p>
+        <img src="../../../assets/img/modifying-document-task-5.png" alt="modifying-document-task-5">
+        <p class="task-description">
+          Выберите один из двух способов решения этой задачи:
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">Создать строку, а затем присвоить через <code>container.innerHTML</code>.</li>
+            <li class="task-list__item">Создавать узлы через методы DOM.</li>
+          </ol>
+        </p>
+        <p class="task-description">
+          Если получится – сделайте оба.
+        </p>
+        <p class="task-description">
+          P.S. Желательно, чтобы в дереве не было лишних элементов, в частности -– пустых <code>&lsaquo;ul&rsaquo;&lsaquo;/ul&rsaquo;</code> на нижнем уровне.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let data = {
+    "Рыбы": {
+      "форель": {},
+      "лосось": {}
+    },
+
+    "Деревья": {
+      "Огромные": {
+        "секвойя": {},
+        "дуб": {}
+      },
+      "Цветковые": {
+        "яблоня": {},
+        "магнолия": {}
+      }
+    }
+  };
+
+  function createTree(container, obj) {
+    container.innerHTML = createTreeText(obj);
+  }
+
+  function createTreeText(obj) {
+    let li = '';
+    let ul;
+    for (let key in obj) {
+      li += '&lsaquo;li&rsaquo;' + key + createTreeText(obj[key]) + '&lsaquo;/li&rsaquo;';
+    }
+    if (li) {
+      ul = '&lsaquo;ul&rsaquo;' + li + '&lsaquo;/ul&rsaquo;'
+    }
+    return ul || '';
+  }
+
+  createTree(container, data);</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Выведите список потомков в дереве</div>
+        <p class="task-description">
+          Есть дерево, организованное в виде вложенных списков <code>ul/li</code>.
+        </p>
+        <p class="task-description">
+          Напишите код, который добавит каждому элементу списка <code>&lsaquo;li&rsaquo;</code> количество вложенных в него элементов. Узлы нижнего уровня, без детей – пропускайте.
+        </p>
+        <p class="task-description">
+          Результат:
+        </p>
+        <img src="../../../assets/img/modifying-document-task-6.png" alt="modifying-document-task-6">
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let lis = document.getElementsByTagName('li');
+
+    for (let li of lis) {
+      let descendantsCount = li.getElementsByTagName('li').length;
+      if (!descendantsCount) continue;
+
+      li.firstChild.data += ' [' + descendantsCount + ']';
+    }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Создайте календарь в виде таблицы</div>
+        <p class="task-description">
+          Напишите функцию <code>createCalendar(elem, year, month)</code>.
+        </p>
+        <p class="task-description">
+          Вызов функции должен создать календарь для заданного месяца <code>month</code> в году <code>year</code> и вставить его в <code>elem</code>.
+        </p>
+        <p class="task-description">
+          Календарь должен быть таблицей, где неделя – это <code>&lsaquo;tr&rsaquo;</code>, а день – это <code>&lsaquo;td&rsaquo;</code>. У таблицы должен быть заголовок с названиями дней недели, каждый день – <code>&lsaquo;th&rsaquo;</code>, первым днём недели должен быть понедельник.
+        </p>
+        <p class="task-description">
+          Например, <code>createCalendar(cal, 2012, 9)</code> сгенерирует в <code>cal</code> следующий календарь:
+        </p>
+        <img src="../../../assets/img/modifying-document-task-7.png" alt="modifying-document-task-7">
+        <p class="task-description">
+          P.S. В этой задаче достаточно сгенерировать календарь, кликабельным его делать не нужно.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function createCalendar(elem, year, month) {
+
+    let mon = month - 1;
+    let d = new Date(year, mon);
+
+    let table = '&lsaquo;table&rsaquo;&lsaquo;tr&rsaquo;&lsaquo;th&rsaquo;пн&lsaquo;/th&rsaquo;&lsaquo;th&rsaquo;вт&lsaquo;/th&rsaquo;&lsaquo;th&rsaquo;ср&lsaquo;/th&rsaquo;&lsaquo;th&rsaquo;чт&lsaquo;/th&rsaquo;&lsaquo;th&rsaquo;пт&lsaquo;/th&rsaquo;
+      &lsaquo;th&rsaquo;сб&lsaquo;/th&rsaquo;&lsaquo;th&rsaquo;вс&lsaquo;/th&rsaquo;&lsaquo;/tr&rsaquo;&lsaquo;tr&rsaquo;';
+
+    for (let i = 0; i < getDay(d); i++) {
+      table += '&lsaquo;td&rsaquo;&lsaquo;/td&rsaquo;';
+    }
+
+    while (d.getMonth() === mon) {
+      table += '&lsaquo;td&rsaquo;' + d.getDate() + '&lsaquo;/td&rsaquo;';
+
+      if (getDay(d) % 7 === 6) {
+        table += '&lsaquo;/tr&rsaquo;&lsaquo;tr&rsaquo;';
+      }
+
+      d.setDate(d.getDate() + 1);
+    }
+
+    if (getDay(d) !== 0) {
+      for (let i = getDay(d); i < 7; i++) {
+        table += '&lsaquo;td&rsaquo;&lsaquo;/td&rsaquo;';
+      }
+    }
+
+    table += '&lsaquo;/tr&rsaquo;&lsaquo;/table&rsaquo;';
+
+    elem.innerHTML = table;
+  }
+
+  function getDay(date) {
+    let day = date.getDay();
+    if (day === 0) day = 7;
+    return day - 1;
+  }
+
+  createCalendar(calendar, 2012, 9);</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Цветные часы с использованием setInterval</div>
+        <p class="task-description">
+          Создайте цветные часы как в примере ниже:
+        </p>
+        <img src="../../../assets/img/modifying-document-task-8.png" alt="modifying-document-task-8">
+        <p class="task-description">
+          Для стилизации используйте HTML/CSS, JavaScript должен только обновлять время в элементах.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>&lsaquo;div id="clock"&rsaquo;
+    &lsaquo;span class="hour"&rsaquo;hh&lsaquo;/span&rsaquo;:&lsaquo;span class="min"&rsaquo;mm&lsaquo;/span&rsaquo;:&lsaquo;span class="sec"&rsaquo;ss&lsaquo;/span&rsaquo;
+  &lsaquo;/div&rsaquo;
+
+  function update() {
+    const clock = document.getElementById('clock');
+    const date = new Date();
+    const hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+    clock.children[0].innerHTML = hours;
+  
+    const minutes = date.getMinutes();
+    if (minutes < 10) minutes = '0' + minutes;
+    clock.children[1].innerHTML = minutes;
+  
+    const seconds = date.getSeconds();
+    if (seconds < 10) seconds = '0' + seconds;
+    clock.children[2].innerHTML = seconds;
+  }
+
+  let timerId;
+
+  function clockStart() {
+    timerId = setInterval(update, 1000);
+    update();
+  }
+  
+  function clockStop() {
+    clearInterval(timerId);
+    timerId = null;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Вставьте HTML в список</div>
+        <p class="task-description">
+          Напишите код для вставки <code>&lsaquo;li&rsaquo;2&lsaquo;/li&rsaquo;&lsaquo;li&rsaquo;3&lsaquo;/li&rsaquo;</code> между этими двумя <code>&lsaquo;li&rsaquo;</code>:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;ul id="ul"&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li id="one"&rsaquo;1&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li id="two"&rsaquo;4&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/ul&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>one.insertAdjacentHTML('afterend', '&lsaquo;li&rsaquo;2&lsaquo;/li&rsaquo;&lsaquo;li&rsaquo;3&lsaquo;/li&rsaquo;');</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Сортировка таблицы</div>
+        <p class="task-description">
+          Вот таблица:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;table&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;thead&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&lsaquo;th&rsaquo;Name&lsaquo;/th&rsaquo;&lsaquo;th&rsaquo;Surname&lsaquo;/th&rsaquo;&lsaquo;th&rsaquo;Age&lsaquo;/th&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;/tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/thead&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;tbody&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&lsaquo;td&rsaquo;John&lsaquo;/td&rsaquo;&lsaquo;td&rsaquo;Smith&lsaquo;/td&rsaquo;&lsaquo;td&rsaquo;10&lsaquo;/td&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;/tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&lsaquo;td&rsaquo;Pete&lsaquo;/td&rsaquo;&lsaquo;td&rsaquo;Brown&lsaquo;/td&rsaquo;&lsaquo;td&rsaquo;15&lsaquo;/td&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;/tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&lsaquo;td&rsaquo;Ann&lsaquo;/td&rsaquo;&lsaquo;td&rsaquo;Lee&lsaquo;/td&rsaquo;&lsaquo;td&rsaquo;5&lsaquo;/td&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;/tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&lsaquo;td&rsaquo;...&lsaquo;/td&rsaquo;&lsaquo;td&rsaquo;...&lsaquo;/td&rsaquo;&lsaquo;td&rsaquo;...&lsaquo;/td&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;/tr&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/tbody&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/table&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          В ней может быть больше строк.
+        </p>
+        <p class="task-description">
+          Напишите код для сортировки по столбцу <code>"name"</code>.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>let sortedRows = Array.from(table.rows)
+    .slice(1)
+    .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1);
+  
+  table.tBodies[0].append(...sortedRows);</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
