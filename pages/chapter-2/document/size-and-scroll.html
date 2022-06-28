@@ -63,6 +63,95 @@
     <h3 class="article-list__title title">
       Размеры и прокрутка элементов
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Найти размер прокрутки снизу</div>
+        <p class="task-description">
+          Свойство <code>elem.scrollTop</code> содержит размер прокрученной области при отсчёте сверху. А как подсчитать размер прокрутки снизу (назовём его <code>scrollBottom</code>)?
+        </p>
+        <p class="task-description">
+          Напишите соответствующее выражение для произвольного элемента <code>elem</code>.
+        </p>
+        <p class="task-description">
+          P.S. Проверьте: если прокрутки нет вообще или элемент полностью прокручен – оно должно давать <code>0</code>.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>elem.scrollHeight - elem.scrollTop - elem.clientHeight;</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Узнать ширину полосы прокрутки</div>
+        <p class="task-description">
+          Напишите код, который возвращает ширину стандартной полосы прокрутки.
+        </p>
+        <p class="task-description">
+          Для Windows она обычно колеблется от <code>12px</code> до <code>20px</code>. Если браузер не выделяет место под полосу прокрутки (так тоже бывает, она может быть прозрачной над текстом), тогда значение может быть <code>0px</code>.
+        </p>
+        <p class="task-description">
+          P.S. Ваш код должен работать в любом HTML-документе, независимо от его содержимого.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const div = document.createElement('div');
+
+  div.style.overflowY = 'scroll';
+  div.style.width = '50px';
+  div.style.height = '50px';
+  
+  document.body.append(div);
+  const scrollWidth = div.offsetWidth - div.clientWidth;
+  
+  div.remove();</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Поместите мяч в центр поля</div>
+        <p class="task-description">
+          Исходный документ выглядит так:
+        </p>
+        <img src="../../../assets/img/size-and-scroll-task-3-1.png" alt="size-and-scroll-task-3-1">
+        <p class="task-description">
+          Каковы координаты центра поля?
+        </p>
+        <p class="task-description">
+          Вычислите их и используйте, чтобы поместить мяч в центр поля:
+        </p>
+        <img src="../../../assets/img/size-and-scroll-task-3-2.png" alt="size-and-scroll-task-3-2">
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Элемент должен позиционироваться за счёт JavaScript, а не CSS.</li>
+            <li>Код должен работать с любым размером мяча (<code>10</code>, <code>20</code>, <code>30</code> пикселей) и любым размером поля без привязки к исходным значениям.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          P.S. Да, центрирование можно сделать при помощи чистого CSS, но задача именно на JavaScript. Далее будут другие темы и более сложные ситуации, когда JavaScript будет уже точно необходим, это – своего рода «разминка».
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>ball.style.left = Math.round(field.clientWidth / 2 - ball.offsetWidth / 2) + 'px';
+  ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'px';</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">В чём отличие CSS-свойств width и clientWidth</div>
+        <p class="task-description">
+          В чём отличие между <code>getComputedStyle(elem).width</code> и <code>elem.clientWidth</code>?
+        </p>
+        <p class="task-description">
+          Укажите хотя бы 3 отличия, лучше – больше.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. clientWidth отдаст число, getComputedStyle(elem).width – строку с "px" на конце.
+  2. getComputedStyle не всегда отдает ширину, для строчных элементов это может быть другое значение,
+  например, "auto".
+  3. clientWidth относится к внутренней области элемента, включая padding, а стандартная ширина CSS
+  это внутренняя область без padding.</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
