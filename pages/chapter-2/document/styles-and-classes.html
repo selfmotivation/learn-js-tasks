@@ -63,6 +63,51 @@
     <h3 class="article-list__title title">
       Стили и классы
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Создать уведомление</div>
+        <p class="task-description">
+          Напишите функцию <code>showNotification(options)</code>, которая создаёт уведомление: <code>&lsaquo;div class="notification"&rsaquo;</code> с заданным содержимым. Уведомление должно автоматически исчезнуть через 1,5 секунды.
+        </p>
+        <p class="task-description">
+          Пример объекта <code>options</code>:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">// показывает элемент с текстом "Hello" рядом с правой верхней частью окна.</li>
+            <li class="task__code-list__item task-list__item">showNotification({</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;top: 10, // 10px от верхней границы окна (по умолчанию 0px)</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;right: 10, // 10px от правого края окна (по умолчанию 0px)</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;html: "Hello!", // HTML-уведомление</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;className: "welcome" // дополнительный класс для div (необязательно)</li>
+            <li class="task__code-list__item task-list__item">});</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Используйте CSS-позиционирование для отображения элемента в заданных координатах. Исходный документ имеет необходимые стили.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function showNotification({top = 0, right = 0, className, html}) {
+
+    const notification = document.createElement('div');
+    notification.className = "notification";
+    if (className) {
+      notification.classList.add(className);
+    }
+
+    notification.style.top = top + 'px';
+    notification.style.right = right + 'px';
+
+    notification.innerHTML = html;
+    document.body.append(notification);
+
+    setTimeout(() => notification.remove(), 1500);
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
