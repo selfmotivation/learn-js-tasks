@@ -81,6 +81,79 @@
     <h3 class="article-list__title title">
       Свойство margin
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Нерабочие margin?</div>
+        <p class="task-description">
+          В примере ниже находится блок <code>.block</code> фиксированной высоты, а в нём – прямоугольник <code>.spacer</code>.
+        </p>
+        <p class="task-description">
+          При помощи <code>margin-left: 20%</code> и <code>margin-right: 20%</code>, прямоугольник центрирован в родителе по горизонтали. Это работает.
+        </p>
+        <p class="task-description">
+          Далее делается попытка при помощи свойств <code>height: 80%</code>, <code>margin-top: 10%</code> и <code>margin-bottom: 10%</code> расположить прямоугольник в центре по вертикали, чтобы сам элемент занимал <code>80%</code> высоты родителя, а сверху и снизу был одинаковый отступ.
+        </p>
+        <p class="task-description">
+          Однако, как видите, это не получается. Почему? Как поправить?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;style&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;.block {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;height: 150px;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #CCC;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;background: #eee;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;.spacer {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;margin-left: 20%;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;margin-right: 20%;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;height: 80%;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;margin-top: 10%;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;margin-bottom: 10%;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid black;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;background: #FFF;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/style&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&lsaquo;div class="block"&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;div class="spacer"&rsaquo;&lsaquo;/div&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/div&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>margin лучше задавать в пикселях</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Расположить текст внутри INPUT</div>
+        <p class="task-description">
+          Создайте <code>&lsaquo;input type="password"&rsaquo;</code> с цветной подсказкой внутри (должен правильно выглядеть, не обязан работать):
+        </p>
+        <img src="../../../assets/img/margin-task-2.png" alt="margin-task-2">
+        <p class="task-description">
+          В дальнейшем мы сможем при помощи JavaScript сделать, чтобы текст при клике пропадал. Получится красивая подсказка.
+        </p>
+        <p class="task-description">
+          P.S. Обратите внимание: <code>type="password"</code>! То есть, просто <code>value</code> использовать нельзя, будут звёздочки. Кроме того, подсказка, которую вы реализуете, может быть как угодно стилизована.
+        </p>
+        <p class="task-description">
+          P.P.S. Вокруг <code>INPUT</code> с подсказкой не должно быть лишних отступов, блоки до и после продолжают идти в обычном потоке.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>#placeholder {
+    ...
+    margin: -1.3em 0 0 0.2em;
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
