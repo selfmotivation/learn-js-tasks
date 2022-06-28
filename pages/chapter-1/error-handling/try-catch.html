@@ -36,6 +36,61 @@
     <h3 class="article-list__title title">
       Обработка ошибок, "try..catch"
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Finally или просто код?</div>
+        <p class="task-description">
+          Сравните два фрагмента кода.
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">
+              Первый использует <code>finally</code> для выполнения кода после <code>try..catch</code>:
+              <code class="task__code">
+                <ol class="task__code-list">
+                  <li class="task__code-list__item task-list__item">try {</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;начать работу</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;работать</li>
+                  <li class="task__code-list__item task-list__item">} catch (e) {</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;обработать ошибку</li>
+                  <li class="task__code-list__item task-list__item">} finally {</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;очистить рабочее пространство</li>
+                  <li class="task__code-list__item task-list__item">}</li>
+                </ol>
+              </code>
+            </li>
+            <li class="task-list__item">
+              Второй фрагмент просто ставит очистку после <code>try..catch</code>:
+              <code class="task__code">
+                <ol class="task__code-list">
+                  <li class="task__code-list__item task-list__item">try {</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;начать работу</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;работать</li>
+                  <li class="task__code-list__item task-list__item">} catch (e) {</li>
+                  <li class="task__code-list__item task-list__item">&nbsp;&nbsp;обработать ошибку</li>
+                  <li class="task__code-list__item task-list__item">}</li>
+                  <li class="task__code-list__item task-list__item"></li>
+                  <li class="task__code-list__item task-list__item">очистить рабочее пространство</li>
+                </ol>
+              </code>
+            </li>
+          </ol>
+        </p>
+        <p class="task-description">
+          Нам определённо нужна очистка после работы, неважно возникли ошибки или нет.
+        </p>
+        <p class="task-description">
+          Есть ли здесь преимущество в использовании <code>finally</code> или оба фрагмента кода одинаковы? Если такое преимущество есть, то дайте пример, когда оно проявляется.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>Код в finally выполнится в любом случае, независимо от исхода или return в try..catch
+  Так что лучше выполнять очистку в finally
+  </code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
