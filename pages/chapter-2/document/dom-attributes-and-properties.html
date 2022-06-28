@@ -63,6 +63,82 @@
     <h3 class="article-list__title title">
       Атрибуты и свойства
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Получите атрибут</div>
+        <p class="task-description">
+          Напишите код для выбора элемента с атрибутом <code>data-widget-name</code> из документа и прочитайте его значение.
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;!DOCTYPE html&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;html&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;body&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;div data-widget-name="menu"&rsaquo;Choose the genre&lsaquo;/div&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;script&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;/* your code */</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;/script&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/body&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/html&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>document.querySelector('[data-widget-name]').dataset.widgetName;</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Сделайте внешние ссылки оранжевыми</div>
+        <p class="task-description">
+          Сделайте все внешние ссылки оранжевыми, изменяя их свойство <code>style</code>.
+        </p>
+        <p class="task-description">
+          Ссылка является внешней, если:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Её <code>href</code> содержит <code>://</code></li>
+            <li>Но не начинается с <code>http://internal.com</code>.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Пример:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;a name="list"&rsaquo;the list&lsaquo;/a&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;ul&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;&lsaquo;a href="http://google.com"&rsaquo;http://google.com&lsaquo;/a&rsaquo;&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;&lsaquo;a href="/tutorial"&rsaquo;/tutorial.html&lsaquo;/a&rsaquo;&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;&lsaquo;a href="local/path"&rsaquo;local/path&lsaquo;/a&rsaquo;&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;&lsaquo;a href="ftp://ftp.com/my.zip"&rsaquo;ftp://ftp.com/my.zip&lsaquo;/a&rsaquo;&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;&lsaquo;a href="http://nodejs.org"&rsaquo;http://nodejs.org&lsaquo;/a&rsaquo;&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;li&rsaquo;&lsaquo;a href="http://internal.com/test"&rsaquo;http://internal.com/test&lsaquo;/a&rsaquo;&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/ul&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&lsaquo;script&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;// добавление стиля для одной ссылки</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;let link = document.querySelector('a');</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;link.style.color = 'orange';</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/script&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Результат должен быть таким:
+        </p>
+        <img src="../../../assets/img/dom-attributes-and-properties-task-2.png" alt="dom-attributes-and-properties-task-2">
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const selector = 'a[href*="://"]:not([href^="http://internal.com"])';
+  const links = document.querySelectorAll(selector);
+  
+  links.forEach(link => link.style.color = 'orange');</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
