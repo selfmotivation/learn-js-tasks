@@ -63,6 +63,206 @@
     <h3 class="article-list__title title">
       Координаты
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Найдите координаты точек относительно окна браузера</div>
+        <p class="task-description">
+          В ифрейме ниже располагается документ с зелёным «полем».
+        </p>
+        <p class="task-description">
+          Используйте JavaScript, чтобы найти координаты углов, обозначенных стрелками.
+        </p>
+        <p class="task-description">
+          В документе уже реализована функциональность, когда при клике на любом месте показываются соответствующие координаты.
+        </p>
+        <p class="task-description">
+          Ваш код должен при помощи DOM получить четыре пары координат:
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">верхний левый, внешний угол (это просто).</li>
+            <li class="task-list__item">нижний правый, внешний угол (тоже просто).</li>
+            <li class="task-list__item">верхний левый, внутренний угол (чуть сложнее).</li>
+            <li class="task-list__item">нижний правый, внутренний угол (есть несколько способов, выберите один).</li>
+          </ol>
+        </p>
+        <p class="task-description">
+          Координаты, вычисленные вами, должны совпадать с теми, которые возвращаются по клику мыши.
+        </p>
+        <p class="task-description">
+          P.S. Код должен работать, если у элемента другие размеры или есть рамка, без привязки к конкретным числам.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. const coords = elem.getBoundingClientRect();
+  const answer1 = [coords.left, coords.top];
+
+  2. const coords = elem.getBoundingClientRect();
+  const answer2 = [coords.right, coords.bottom];
+
+  3. const coords = elem.getBoundingClientRect();
+  const answer3 = [coords.left + field.clientLeft, coords.top + field.clientTop];
+
+  4. const coords = elem.getBoundingClientRect();
+  const answer4 = [
+    coords.right - parseInt(getComputedStyle(field).borderRightWidth),
+    coords.bottom - parseInt(getComputedStyle(field).borderBottomWidth)
+  ];</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Покажите заметку рядом с элементом</div>
+        <p class="task-description">
+          Создайте функцию <code>positionAt(anchor, position, elem)</code>, которая позиционирует элемент <code>elem</code> в зависимости от значения свойства <code>position</code> рядом с элементом <code>anchor</code>.
+        </p>
+        <p class="task-description">
+          Аргумент <code>position</code> – строка с одним из 3 значений:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li><code>"top"</code> – расположить <code>elem</code> прямо над <code>anchor</code></li>
+            <li><code>"right"</code> – расположить <code>elem</code> непосредственно справа от <code>anchor</code></li>
+            <li><code>"bottom"</code> – расположить <code>elem</code> прямо под <code>anchor</code></li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Она используется внутри функции <code>showNote(anchor, position, html)</code>, которая уже есть в исходном коде задачи. Она создаёт и показывает элемент-«заметку» с текстом <code>html</code> на заданной позиции <code>position</code> рядом с элементом <code>anchor</code>.
+        </p>
+        <p class="task-description">
+          Демо заметки:
+        </p>
+        <img src="../../../assets/img/coordinates-task-2.png" alt="coordinates-task-2">
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function positionAt(anchor, position, elem) {
+    const anchorCoords = anchor.getBoundingClientRect();
+
+    switch (position) {
+      case "top":
+        elem.style.left = anchorCoords.left + "px";
+        elem.style.top = anchorCoords.top - elem.offsetHeight + "px";
+        break;
+      case "right":
+        elem.style.left = anchorCoords.left + anchor.offsetWidth + "px";
+        elem.style.top = anchorCoords.top + "px";
+        break;
+      case "bottom":
+        elem.style.left = anchorCoords.left + "px";
+        elem.style.top = anchorCoords.top + anchor.offsetHeight + "px";
+        break;
+    }
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Покажите заметку около элемента (абсолютное позиционирование)</div>
+        <p class="task-description">
+          Измените код решения предыдущего задания так, чтобы элемент заметки использовал свойство <code>position:absolute</code> вместо <code>position:fixed</code>.
+        </p>
+        <p class="task-description">
+          Это предотвратит расхождение элементов при прокрутке страницы.
+        </p>
+        <p class="task-description">
+          Используйте решение предыдущего задания для начала. Чтобы проверить решение в условиях с прокруткой, добавьте стиль элементу <code>&lsaquo;body style="height: 2000px"&rsaquo;&lsaquo;/body&rsaquo;</code>.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function getCoords(elem) {
+    const box = elem.getBoundingClientRect();
+
+    return {
+      top: box.top + pageYOffset,
+      left: box.left + pageXOffset
+    };
+  }
+
+  function positionAt(anchor, position, elem) {
+    const anchorCoords = getCoords(anchor);
+
+    switch (position) {
+      case "top":
+        elem.style.left = anchorCoords.left + "px";
+        elem.style.top = anchorCoords.top - elem.offsetHeight + "px";
+        break;
+      case "right":
+        elem.style.left = anchorCoords.left + anchor.offsetWidth + "px";
+        elem.style.top = anchorCoords.top + "px";
+        break;
+      case "bottom":
+        elem.style.left = anchorCoords.left + "px";
+        elem.style.top = anchorCoords.top + anchor.offsetHeight + "px";
+        break;
+    }
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Расположите заметку внутри элемента (абсолютное позиционирование)</div>
+        <p class="task-description">
+          Усовершенствуйте решение предыдущего задания Покажите заметку около элемента (абсолютное позиционирование): научите функцию <code>positionAt(anchor, position, elem)</code> вставлять <code>elem</code> внутрь <code>anchor</code>.
+        </p>
+        <p class="task-description">
+          Новые значения для аргумента <code>position</code>:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li><code>top-out</code>, <code>right-out</code>, <codebottom-out></codebottom-out> – работают так же, как раньше, они вставляют <code>elem</code> сверху/справа/снизу <code>anchor</code>.</li>
+            <li><code>top-in</code>, <code>right-in</code>, <code>bottom-in</code> – вставляют <code>elem</code> внутрь <code>anchor</code>: приклеивают его к верхнему/правому/нижнему краю.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Например:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">// показывает заметку поверх цитаты</li>
+            <li class="task__code-list__item task-list__item">positionAt(blockquote, "top-out", note);</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">// показывает заметку внутри цитаты вблизи верхнего края элемента</li>
+            <li class="task__code-list__item task-list__item">positionAt(blockquote, "top-in", note);</li>
+          </ol>
+        </code>        
+        <p class="task-description">
+          Результат:
+        </p>
+        <img src="../../../assets/img/coordinates-task-4.png" alt="coordinates-task-4">
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>function positionAt(anchor, position, elem) {
+    const anchorCoords = getCoords(anchor);
+
+    switch (position) {
+      case "top-out":
+        elem.style.left = anchorCoords.left + "px";
+        elem.style.top = anchorCoords.top - elem.offsetHeight + "px";
+        break;
+      case "right-out":
+        elem.style.left = anchorCoords.left + anchor.offsetWidth + "px";
+        elem.style.top = anchorCoords.top + "px";
+        break;
+      case "bottom-out":
+        elem.style.left = anchorCoords.left + "px";
+        elem.style.top = anchorCoords.top + anchor.offsetHeight + "px";
+        break;
+      case "top-in":
+        elem.style.left = anchorCoords.left + "px";
+        elem.style.top = anchorCoords.top + "px";
+        break;
+      case "right-in":
+        elem.style.width = '150px';
+        elem.style.left = anchorCoords.left + anchor.offsetWidth - elem.offsetWidth + "px";
+        elem.style.top = anchorCoords.top + "px";
+        break;
+      case "bottom-in":
+        elem.style.left = anchorCoords.left + "px";
+        elem.style.top = anchorCoords.top + anchor.offsetHeight - elem.offsetHeight + "px";
+        break;
+    }
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
