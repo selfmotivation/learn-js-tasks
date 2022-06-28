@@ -63,6 +63,40 @@
     <h3 class="article-list__title title">
       Поиск: getElement*, querySelector*
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Поиск элементов</div>
+        <p class="task-description">
+          Вот документ с таблицей и формой.
+        </p>
+        <p class="task-description">
+          Как найти?…
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">Таблицу с <code>id="age-table"</code>.</li>
+            <li class="task-list__item">Все элементы <code>label</code> внутри этой таблицы (их три).</li>
+            <li class="task-list__item">Первый <code>td</code> в этой таблице (со словом «Age»).</li>
+            <li class="task-list__item">Форму <code>form</code> с именем <code>name="search"</code>.</li>
+            <li class="task-list__item">Первый <code>input</code> в этой форме.</li>
+            <li class="task-list__item">Последний <code>input</code> в этой форме.</li>
+          </ol>
+        </p>
+        <p class="task-description">
+          Откройте страницу table.html в отдельном окне и используйте для этого браузерные инструменты разработчика.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. const table = document.getElementById('age-table');
+  2. document.querySelectorAll('#age-table label');
+  3. table.querySelector('td');
+  4. document.querySelector('form[name="search"]');
+  5. document.querySelectorAll('input')[0];
+  6. document.querySelectorAll('input')[document.querySelectorAll.length-1];</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
