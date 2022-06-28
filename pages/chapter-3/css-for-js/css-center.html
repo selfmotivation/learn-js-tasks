@@ -81,6 +81,140 @@
     <h3 class="article-list__title title">
       Центрирование горизонтальное и вертикальное
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Поместите мяч в центр поля (CSS)</div>
+        <p class="task-description">
+          Поместите мяч в центр поля при помощи CSS.
+        </p>
+        <p class="task-description">
+          Исходный код:
+        </p>
+        <img src="../../../assets/img/css-center-task-1.png" alt="css-center-task-1">
+        <p class="task-description">
+          Используйте CSS, чтобы поместить мяч в центр:
+        </p>
+        <img src="../../../assets/img/css-center-task-2.png" alt="css-center-task-2">
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>CSS для центрирования может использовать размеры мяча.</li>
+            <li>CSS для центрирования не должен опираться на конкретный размер поля.</li>
+          </ul>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>.ball-img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    margin-left: -20px;
+    margin-top: -20px;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Форма + модальное окно</div>
+        <p class="task-description">
+          Создайте при помощи HTML/CSS форму для логина в модальном окне.
+        </p>
+        <img src="../../../assets/img/css-center-task-3.png" alt="css-center-task-3">
+        <p class="task-description">
+          Требования:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Кнопки окна вне формы не работают (даже на левый край нажать нельзя).</li>
+            <li>Полупрозрачный голубой «экран» отстоит от границ на <code>20px</code>.</li>
+            <li>Форма центрирована вертикально и горизонтально, её размеры фиксированы.</li>
+            <li>Посетитель может менять размер окна браузера, геометрия должна сохраняться.</li>
+            <li>Не ломается при прокрутке.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Браузеры: все основные, IE8+.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>HTML:
+    &lsaquo;!DOCTYPE HTML&rsaquo;
+    &lsaquo;html&rsaquo;
+    &lsaquo;head&rsaquo;
+      &lsaquo;meta charset="utf-8"&rsaquo;
+    &lsaquo;/head&rsaquo;
+    &lsaquo;body style="height:2000px"&rsaquo;
+      &lsaquo;p&rsaquo;Текст Текст Текст&lsaquo;/p&rsaquo;
+      &lsaquo;button onclick="alert('Эта кнопка не должна работать')"&rsaquo;Эта кнопка не работает&lsaquo;/button&rsaquo;
+      &lsaquo;p&rsaquo;Текст Текст Текст&lsaquo;/p&rsaquo;
+      &lsaquo;div id="box"&rsaquo;
+        &lsaquo;div id="box-inner"&rsaquo;
+        &lsaquo;/div&rsaquo;
+        &lsaquo;form&rsaquo;
+          Добро пожаловать!
+          &lsaquo;table&rsaquo;
+            &lsaquo;tr&rsaquo;
+              &lsaquo;td&rsaquo;Логин&lsaquo;/td&rsaquo;
+              &lsaquo;td&rsaquo;
+                &lsaquo;input&rsaquo;
+              &lsaquo;/td&rsaquo;
+            &lsaquo;/tr&rsaquo;
+            &lsaquo;tr&rsaquo;
+              &lsaquo;td&rsaquo;Пароль&lsaquo;/td&rsaquo;
+              &lsaquo;td&rsaquo;
+                &lsaquo;input&rsaquo;
+              &lsaquo;/td&rsaquo;
+            &lsaquo;/tr&rsaquo;
+            &lsaquo;tr&rsaquo;
+              &lsaquo;td colspan="2"&rsaquo;
+                &lsaquo;input type="submit" value="Войти"&rsaquo;
+              &lsaquo;/td&rsaquo;
+            &lsaquo;/tr&rsaquo;
+          &lsaquo;/table&rsaquo;
+        &lsaquo;/form&rsaquo;
+      &lsaquo;/div&rsaquo;
+    &lsaquo;/body&rsaquo;
+    &lsaquo;/html&rsaquo;
+  
+  CSS:
+    #box {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+    }
+
+    #box-inner {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      top: 20px;
+      bottom: 20px;
+      background: blue;
+      opacity: 0.3;
+      filter: alpha(opacity=30);
+    }
+
+    #box form {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+
+      margin: auto;
+
+      height: 120px;
+      width: 300px;
+      border: 1px solid black;
+      padding: 5px 5px 5px 55px;
+      background: url(https://js.cx/clipart/key.png) 3px 5px white no-repeat;
+    }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
