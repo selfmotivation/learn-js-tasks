@@ -63,6 +63,92 @@
     <h3 class="article-list__title title">
       Свойства узлов: тип, тег и содержимое
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Считаем потомков</div>
+        <p class="task-description">
+          У нас есть дерево, структурированное как вложенные списки <code>ul/li</code>.
+        </p>
+        <p class="task-description">
+          Напишите код, который выведет каждый элемент списка <code>&lsaquo;li&rsaquo;</code>:
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">Какой в нём текст (без поддерева) ?</li>
+            <li class="task-list__item">Какое число потомков – всех вложенных <code>&lsaquo;li&rsaquo;</code> (включая глубоко вложенные) ?</li>
+          </ol>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>for (let li of document.querySelectorAll('li')) {
+    const title = li.firstChild.data;
+  }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Что содержит свойство nodeType?</div>
+        <p class="task-description">
+          Что выведет этот код?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;html&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&lsaquo;body&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;script&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;alert(document.body.lastChild.nodeType);</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;/script&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/body&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/html&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Тег в комментарии</div>
+        <p class="task-description">
+          Что выведет этот код?
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;script&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;let body = document.body;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;body.innerHTML = "&lsaquo;!--" + body.tagName + "--&rsaquo;";</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;alert( body.firstChild.data ); // что выведет?</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/script&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>BODY</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Где в DOM-иерархии "document"?</div>
+        <p class="task-description">
+          Объектом какого класса является <code>document</code>?
+        </p>
+        <p class="task-description">
+          Какое место он занимает в DOM-иерархии?
+        </p>
+        <p class="task-description">
+          Наследует ли он от <code>Node</code> или от <code>Element</code>, или может от <code>HTMLElement</code>?
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. HTMLDocument
+  2. HTMLDocument.prototype.__proto__.constructor.name
+  3. Node</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
