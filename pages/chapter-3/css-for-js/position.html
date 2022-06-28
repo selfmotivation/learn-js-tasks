@@ -81,6 +81,35 @@
     <h3 class="article-list__title title">
       Свойство position
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Модальное окно</div>
+        <p class="task-description">
+          Создайте при помощи HTML/CSS «модальное окно», то есть <code>DIV</code>, который полностью перекрывает документ и находится над ним.
+        </p>
+        <p class="task-description">
+          При этом все элементы управления на документе перестают работать, т.к. клики попадают в <code>DIV</code>.
+        </p>
+        <p class="task-description">
+          В примере ниже <code>DIV'у</code> дополнительно поставлен цвет фона и прозрачность, чтобы было видно перекрытие:
+        </p>
+        <p class="task-description">
+          Браузеры: все основные, IE8+. Должно работать при прокрутке окна (проверьте).
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
