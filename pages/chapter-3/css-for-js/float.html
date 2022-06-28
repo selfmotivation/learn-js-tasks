@@ -81,6 +81,202 @@
     <h3 class="article-list__title title">
       Свойство float
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Разница inline-block и float</div>
+        <p class="task-description">
+          Галерея изображений состоит из картинок в рамках с подписями (возможно, с другой дополнительной информацией).
+        </p>
+        <p class="task-description">
+          Пример галереи:
+        </p>
+        <img src="../../../assets/img/float-task-1.png" alt="float-task-1">
+        <p class="task-description">
+          Технически вывод такой галереи можно реализовать при помощи списка UL/LI, где:
+        </p>
+        <p class="task-description">
+          <ol class="task-list">
+            <li class="task-list__item">каждый LI имеет <code>display:inline-block</code></li>
+            <li class="task-list__item">каждый LI имеет <code>float:left</code></li>
+          </ol>
+        </p>
+        <p class="task-description">
+          Какие различия между этими подходами? Какой вариант выбрали бы вы?
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>inline-block остается в потоке, float заставляет элементы "выпадать"</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Дерево с многострочными узлами</div>
+        <p class="task-description">
+          Сделайте дерево при помощи семантической вёрстки и CSS-спрайта с иконками (есть готовый).
+        </p>
+        <p class="task-description">
+          Выглядеть должно так (не кликабельно):
+        </p>
+        <img src="../../../assets/img/float-task-2.png" alt="float-task-2">
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Поддержка многострочных названий узлов</li>
+            <li>Над иконкой курсор становится указателем.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          Исходный документ содержит список UL/LI и ссылку на картинку.
+        </p>
+        <p class="task-description">
+          P.S. Достаточно сделать HTML/CSS-структуру, действия добавим позже.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>&lsaquo;ul&rsaquo;
+    &lsaquo;li class="open"&rsaquo;
+      &lsaquo;div class="icon"&rsaquo;&lsaquo;/div&rsaquo;
+      &lsaquo;div class="text"&rsaquo;Раздел 1
+        &lsaquo;br&rsaquo;(занимает две строки)&lsaquo;/div&rsaquo;
+      &lsaquo;ul&rsaquo;
+        &lsaquo;li class="closed"&rsaquo;
+          &lsaquo;div class="icon"&rsaquo;&lsaquo;/div&rsaquo;
+          &lsaquo;div class="text"&rsaquo;Раздел 1.1&lsaquo;/div&rsaquo;
+        &lsaquo;/li&rsaquo;
+        &lsaquo;li class="leaf"&rsaquo;
+          &lsaquo;div class="icon"&rsaquo;&lsaquo;/div&rsaquo;
+          &lsaquo;div class="text"&rsaquo;Страница 1.2
+            &lsaquo;br&rsaquo;(занимает две строки)&lsaquo;/div&rsaquo;
+        &lsaquo;/li&rsaquo;
+      &lsaquo;/ul&rsaquo;
+    &lsaquo;/li&rsaquo;
+    &lsaquo;li class="closed"&rsaquo;
+      &lsaquo;div class="icon"&rsaquo;&lsaquo;/div&rsaquo;
+      &lsaquo;div class="text"&rsaquo;Раздел 2
+        &lsaquo;br&rsaquo;(занимает две строки)&lsaquo;/div&rsaquo;
+    &lsaquo;/li&rsaquo;
+  &lsaquo;/ul&rsaquo;</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Постраничная навигация (CSS)</div>
+        <p class="task-description">
+          Оформите навигацию, центрированную внутри <code>DIV'а</code>:
+        </p>
+        <img src="../../../assets/img/float-task-3.png" alt="float-task-3">
+        <p class="task-description">
+          Требования:
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Левая стрелка – слева, правая – справа, список страниц – по центру.</li>
+            <li>Список страниц центрирован вертикально.</li>
+            <li>Текст сверху и снизу ни на что не наползает.</li>
+            <li>Курсор при наведении на стрелку или элемент списка становится стрелкой <code>pointer</code>.</li>
+          </ul>
+        </p>
+        <p class="task-description">
+          P.S. Без использования таблиц.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>HTML:
+    &lsaquo;div class="nav"&rsaquo;
+    &lsaquo;img src="arrow-left.jpg" class="left" width="40" height="40"&rsaquo;
+    &lsaquo;img src="arrow-right.jpg" class="right" width="40" height="40"&rsaquo;
+    &lsaquo;ul class="pages"&rsaquo;
+      &lsaquo;li&rsaquo;...&lsaquo;/li&rsaquo;
+    &lsaquo;/ul&rsaquo;
+    &lsaquo;/div&rsaquo;
+  
+  CSS:
+    .nav {
+      height: 40px;
+      width: 80%;
+      margin: auto;
+    }
+    
+    .nav .left {
+      float: left;
+      cursor: pointer;
+    }
+    
+    .nav .right {
+      float: right;
+      cursor: pointer;
+    }
+    
+    .nav .pages {
+      list-style: none;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav .pages li {
+      display: inline;
+      margin: 0 3px;
+      line-height: 40px;
+      cursor: pointer;
+    }</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Добавить рамку, сохранив ширину</div>
+        <p class="task-description">
+          Есть две колонки <code>30%/70%</code>:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;style&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;.left {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;float:left;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;width:30%;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;background: #aef;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;.right {</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;float:right;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;width:70%;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;background: tan;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;}</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/style&rsaquo;</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">&lsaquo;div class="left"&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">Левая&lsaquo;br&rsaquo;Колонка</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/div&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;div class="right"&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">Правая&lsaquo;br&rsaquo;Колонка&lsaquo;br&rsaquo;...</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/div&rsaquo;</li>
+          </ol>
+        </code>
+        <img src="../../../assets/img/float-task-4.png" alt="float-task-4">
+        <p class="task-description">
+          Добавьте к правой колонке рамку <code>border-left</code> и отступ <code>padding-left</code>.
+        </p>
+        <p class="task-description">
+          Двухколоночная вёрстка при этом не должна сломаться!
+        </p>
+        <p class="task-description">
+          Желательно не трогать свойство <code>width</code> ни слева ни справа и не создавать дополнительных элементов.
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>...
+    .right {
+      ...
+      
+      box-sizing: border-box;
+
+      border-left: 2px solid green;
+      padding-left: 10px;
+  
+      ...
+    }
+  ...
+  </code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
