@@ -63,6 +63,89 @@
     <h3 class="article-list__title title">
       Навигация по DOM-элементам
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Дочерние элементы в DOM</div>
+        <p class="task-description">
+          Для страницы:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">&lsaquo;html&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;body&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;div&rsaquo;Пользователи:&lsaquo;/div&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;ul&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&lsaquo;li&rsaquo;Джон&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&nbsp;&nbsp;&lsaquo;li&rsaquo;Пит&lsaquo;/li&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&nbsp;&nbsp;&lsaquo;/ul&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/body&rsaquo;</li>
+            <li class="task__code-list__item task-list__item">&lsaquo;/html&rsaquo;</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Напишите код, как получить…
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>элемент <code>&lsaquo;div&rsaquo;</code>?</li>
+            <li><code>&lsaquo;ul&rsaquo;</code>?</li>
+            <li>второй <code>&lsaquo;li&rsaquo;</code> (с именем Пит)?</li>
+          </ul>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. document.body.firstElementChild;
+  2. document.body.lastElementChild;
+  3. document.body.lastElementChild.lastElementChild;</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Вопрос о соседях</div>
+        <p class="task-description">
+          Если <code>elem</code> – произвольный узел DOM-элемента…
+        </p>
+        <p class="task-description">
+          <ul class="task-list__simple">
+            <li>Правда, что <code>elem.lastChild.nextSibling</code> всегда равен <code>null</code>?</li>
+            <li>Правда, что <code>elem.children[0].previousSibling</code> всегда равен <code>null</code> ?</li>
+          </ul>
+        </p>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>1. elem.lastChild всегда последний, правда;
+  2. elem.children[0] – потомок-элемент, перед ним могут быть другие узлы - не правда;</code>
+        </pre>
+      </div>
+      <div class="task">
+        <div class="task__title">Выделите ячейки по диагонали</div>
+        <p class="task-description">
+          Напишите код, который выделит красным цветом все ячейки в таблице по диагонали.
+        </p>
+        <p class="task-description">
+          Вам нужно получить из таблицы <code>&lsaquo;table&rsaquo;</code> все диагональные <code>&lsaquo;td&rsaquo;</code> и выделить их, используя код:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">//  в переменной td находится DOM-элемент для тега <td></li>
+            <li class="task__code-list__item task-list__item">td.style.backgroundColor = 'red';</li>
+          </ol>
+        </code>
+        <p class="task-description">
+          Должно получиться так:
+        </p>
+        <img src="../../../assets/img/dom-navigation-task-3.png" alt="dom-navigation-task-3">
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>const table = document.body.firstElementChild;
+
+    for (let i = 0; i < table.rows.length; i++) {
+      let row = table.rows[i];
+      row.cells[i].style.backgroundColor = 'red';
+    }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
