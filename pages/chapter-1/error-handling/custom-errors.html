@@ -36,6 +36,42 @@
     <h3 class="article-list__title title">
       Пользовательские ошибки, расширение Error
     </h3>
+    <section class="tasks">
+      <h4 class="tasks__title title">Задачи</h4>
+      <div class="task">
+        <div class="task__title">Finally или просто код?</div>
+        <p class="task-description">
+          Создайте класс <code>FormatError</code>, который наследует от встроенного класса <code>SyntaxError</code>.
+        </p>
+        <p class="task-description">
+          Класс должен поддерживать свойства <code>message</code>, <code>name</code> и <code>stack</code>.
+        </p>
+        <p class="task-description">
+          Пример использования:
+        </p>
+        <code class="task__code">
+          <ol class="task__code-list">
+            <li class="task__code-list__item task-list__item">let err = new FormatError("ошибка форматирования");</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( err.message ); // ошибка форматирования</li>
+            <li class="task__code-list__item task-list__item">alert( err.name ); // FormatError</li>
+            <li class="task__code-list__item task-list__item">alert( err.stack ); // stack</li>
+            <li class="task__code-list__item task-list__item"></li>
+            <li class="task__code-list__item task-list__item">alert( err instanceof FormatError ); // true</li>
+            <li class="task__code-list__item task-list__item">alert( err instanceof SyntaxError ); // true (потому что наследует от SyntaxError)</li>
+          </ol>
+        </code>
+        <p class="task__solution">Решение:</p>
+        <pre class="task__solution__code">
+  <code>class FormatError extends SyntaxError {
+    constructor(message) {
+      super(message);
+      this.name = "FormatError";
+    }
+  }</code>
+        </pre>
+      </div>
+    </section>
   </main>
 </body>
 </html>
